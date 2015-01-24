@@ -49,6 +49,8 @@ public class RadarManager : MonoBehaviour {
 
         //setup Map's Image component
         _mapImage.SetNativeSize();
+        Debug.Log( "_canvasScaler.referenceResolution.y:" + _canvasScaler.referenceResolution.y );
+        Debug.Log( "_mapImage.rectTransform.sizeDelta.y" + _mapImage.rectTransform.sizeDelta.y );
         _minScale = _canvasScaler.referenceResolution.y / _mapImage.rectTransform.sizeDelta.y;
         _mapImage.rectTransform.localScale = _minScale * Vector3.one;
 

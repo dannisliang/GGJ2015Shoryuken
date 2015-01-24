@@ -645,7 +645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
-  m_ReferencePixelsPerUnit: 1
+  m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
@@ -700,8 +700,8 @@ MonoBehaviour:
   _mapImage: {fileID: 1653497276}
   radarBarPrefab: {fileID: 178934, guid: 3da43eaaa6d3bde44897a5fd7235f4a1, type: 2}
   radarBlipPrefab: {fileID: 168464, guid: e1eaf80875bd41d47b9b8ba1ca2cae4a, type: 2}
-  factorX: 1
-  factorZ: 1
+  worldToLocalScaleFactorX: 1
+  worldToLocalScaleFactorZ: 1
 --- !u!1 &1653497275
 GameObject:
   m_ObjectHideFlags: 0
