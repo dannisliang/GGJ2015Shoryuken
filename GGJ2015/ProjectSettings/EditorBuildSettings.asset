@@ -11,3 +11,9 @@ EditorBuildSettings:
     path: Assets/_ROOT/Scenes/StandaloneScenes/MainMenu.unity
   - enabled: 1
     path: Assets/_ROOT/Scenes/StandaloneScenes/Game.unity
+  - enabled: 1
+    path: Assets/_ROOT/Scenes/RadarScenes/AppStartRadar.unity
+  - enabled: 1
+    path: Assets/_ROOT/Scenes/RadarScenes/GameRadar.unity
+  - enabled: 1
+    path: Assets/_ROOT/Scenes/RadarScenes/MainMenuRadar.unity
