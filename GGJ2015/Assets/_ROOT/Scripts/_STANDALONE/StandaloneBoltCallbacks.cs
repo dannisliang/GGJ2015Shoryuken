@@ -8,19 +8,8 @@ using Kathulhu;
 public class StandaloneBoltCallbacks : GlobalEventListener
 {
 
-    void Update()
-    {
-        if ( Input.GetKeyDown( KeyCode.G ) )
-        {
-            PingMonsterPosition evt = PingMonsterPosition.Create();
-            evt.Position = new Vector3( Random.Range( 0f, 250f ), 0, Random.Range( 0f, 250f ) );
-            evt.Send();
-        }
-    }
-
     public override void Disconnected( BoltConnection connection )
     {
-        Debug.Log( "StandaloneBoltCallback:Disconnected" );
         if ( GameController.ActiveSceneManager.SceneName == "Game" )
         {
             GameController.LoadScene( "MainMenu" );
@@ -28,7 +17,8 @@ public class StandaloneBoltCallbacks : GlobalEventListener
     }
 
     public override void Connected( BoltConnection connection )
-    {        
+    {
+        //GameController.Registry.Register<BoltConnection>( connection, "Client" );
         if (GameController.ActiveSceneManager.SceneName == "MainMenu")
         {
             var evt = EnterTheGameScene.Create();
@@ -42,32 +32,4 @@ public class StandaloneBoltCallbacks : GlobalEventListener
             GameController.LoadScene( "Game" );
     }
 
-    //List<string> logMessages = new List<string>();
-
-    //void OnGUI()
-    //{
-    //    // only display max the 5 latest log messages
-    //    int maxMessages = Mathf.Min( 5, logMessages.Count );
-
-    //    GUILayout.BeginArea( new Rect( Screen.width / 2 - 200, Screen.height - 100, 400, 100 ), GUI.skin.box );
-
-    //    for ( int i = 0; i < maxMessages; ++i )
-    //    {
-    //        GUILayout.Label( logMessages[i] );
-    //    }
-
-    //    GUILayout.EndArea();
-    //}
-
-
-    //"Listen to event" example
-    //public override void OnEvent( ShowDebugMessage evnt )
-    //{
-    //    logMessages.Insert( 0, evnt.message );
-    //}
-
-    //"Raise event" example
-    //var log = ShowDebugMessage.Create();
-    //log.message = string.Format( "{0} connected", connection.RemoteEndPoint );
-    //log.Send();
 }

@@ -14,4 +14,4 @@ MonoBehaviour:
   ManualMode: 0
   Prefabs:
   - {fileID: 0}
-  - {fileID: 171866, guid: 1d78d8028e1059c44b86cf1b23bb5714, type: 2}
+  - {fileID: 0}
