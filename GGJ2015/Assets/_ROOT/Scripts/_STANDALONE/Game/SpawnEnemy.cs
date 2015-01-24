@@ -25,6 +25,7 @@ public class SpawnEnemy : MonoBehaviour {
 			EnemyAi enemy  = obj.GetComponent<EnemyAi>();
 			enemy.state = stateSpawn;
 			enemy.target = collider;
+			enemy.spawnPoint = gameObject;
 		}
 	}
 }

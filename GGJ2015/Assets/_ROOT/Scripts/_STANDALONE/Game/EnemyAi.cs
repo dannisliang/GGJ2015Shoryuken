@@ -21,15 +21,17 @@ public class EnemyAi : MonoBehaviour {
 
 	public EnemyState state;
 	public GameObject target = new GameObject();
+	public GameObject spawnPoint;
 
 
 	private Seeker m_seeker;
 	private AIPath m_path;
 
-	public EnemyAi(GameObject targetObj, EnemyState stateAi)
+	public EnemyAi(GameObject targetObj, EnemyState stateAi, GameObject spawn)
 	{
 		target = targetObj;
 		state = stateAi;
+		spawnPoint = spawn;
 	}
 
 
@@ -39,12 +41,13 @@ public class EnemyAi : MonoBehaviour {
 		m_path = GetComponent<AIPath>();
 		m_path.target = target.transform;
 		m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
-
+		spawnPoint = new GameObject();
+		spawnPoint.transform.position = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(target != m_path.target)
+		if(target.GetInstanceID() != m_path.GetInstanceID())
 		{
 			m_path.target = target.transform;
 		}
@@ -67,12 +70,16 @@ public class EnemyAi : MonoBehaviour {
 			{
 				m_path.speed = EnemyAlertedSpeed;
 				m_path.canMove = true;
+				if(m_path.TargetReached)
+					state = EnemyState.Waiting;
 			}
 			break;
 			case EnemyState.Flee:
 			{
 				m_path.speed = EnemyFleeSpeed;
 				m_path.canMove = true;
+				if(m_path.TargetReached)
+					state = EnemyState.Waiting;
 			}
 			break;
 			case EnemyState.Walking:
@@ -83,6 +90,8 @@ public class EnemyAi : MonoBehaviour {
 			break;
 		}
 	}
+
+
 
 	public Seeker Seeker {
 		get {
