@@ -2,28 +2,103 @@
 using System.Collections;
 using Pathfinding;
 
-public class EnemyAi : MonoBehaviour {
+public enum EnemyState
+{
+	Waiting,
+	Alerted,
+	Attack,
+	Flee,
+	Walking
+}
 
-	public float speed = 10;
+public class EnemyAi : MonoBehaviour {
+	
+
+	static float EnemyAttackSpeed = 100;
+	static float EnemyWalkSpeed = 25;
+	static float EnemyAlertedSpeed = 75;
+	static float EnemyFleeSpeed = 100;
+
+	public EnemyState state;
+	public GameObject target = new GameObject();
+
+
+	private Seeker m_seeker;
+	private AIPath m_path;
+
+	public EnemyAi(GameObject targetObj, EnemyState stateAi)
+	{
+		target = targetObj;
+		state = stateAi;
+	}
+
 
 	// Use this for initialization
 	void Start () {
-		Seeker seeker = GetComponent<Seeker>();
-		seeker.StartPath (transform.position, transform.position+transform.forward*speed, OnPathComplete);
+		m_seeker = GetComponent<Seeker>();
+		m_path = GetComponent<AIPath>();
+		m_path.target = target.transform;
+		m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.LookAt(GameObject.Find("Player").transform.position);
+		if(target != m_path.target)
+		{
+			m_path.target = target.transform;
+		}
+
+		switch(state)
+		{
+			case EnemyState.Attack:
+			{
+				m_path.speed = EnemyAttackSpeed;
+				m_path.canMove = true;
+			}
+			break;
+			case EnemyState.Waiting:
+			{
+				m_path.canMove = false;
+				rigidbody.velocity = Vector3.zero;
+			}
+			break;
+			case EnemyState.Alerted:
+			{
+				m_path.speed = EnemyAlertedSpeed;
+				m_path.canMove = true;
+			}
+			break;
+			case EnemyState.Flee:
+			{
+				m_path.speed = EnemyFleeSpeed;
+				m_path.canMove = true;
+			}
+			break;
+			case EnemyState.Walking:
+			{
+				m_path.speed = EnemyWalkSpeed;
+				m_path.canMove = true;
+			}
+			break;
+		}
 	}
 
-	public void OnPathComplete (Path p) {
-		//We got our path back
-		if (p.error) {
-			//Nooo, a valid path couldn't be found
-		} else {
-			//Yey, now we can get a Vector3 representation of the path
-			//from p.vectorPath
+	public Seeker Seeker {
+		get {
+			return m_seeker;
+		}
+		set {
+			m_seeker = value;
+		}
+	}
+
+	public AIPath Path {
+		get {
+			return m_path;
+		}
+		set {
+			m_path = value;
 		}
 	}
 }
