@@ -30,6 +30,8 @@ public class RadarManager : MonoBehaviour {
 
     private const float offsetZ = -2f;
 
+    private Dictionary<Type, GameObject> _interactableIconsPrefabs = new Dictionary<Type, GameObject>();
+
     private Canvas _canvas;
     private CanvasScaler _canvasScaler;
 
@@ -48,11 +50,12 @@ public class RadarManager : MonoBehaviour {
         _canvasScaler = GetComponent<CanvasScaler>();
 
         //setup Map's Image component
-        _mapImage.SetNativeSize();
-        Debug.Log( "_canvasScaler.referenceResolution.y:" + _canvasScaler.referenceResolution.y );
-        Debug.Log( "_mapImage.rectTransform.sizeDelta.y" + _mapImage.rectTransform.sizeDelta.y );
+        _mapImage.SetNativeSize();        
         _minScale = _canvasScaler.referenceResolution.y / _mapImage.rectTransform.sizeDelta.y;
         _mapImage.rectTransform.localScale = _minScale * Vector3.one;
+
+        //Map interactable icons types
+        _interactableIconsPrefabs.Add( Type.GetType( "Door" ), Resources.Load("DoorIcon") as GameObject );
 
         //set Singleton reference
         Instance = this;
@@ -136,6 +139,19 @@ public class RadarManager : MonoBehaviour {
     {
         float scale = Mathf.Max( _mapImage.transform.localScale.y + delta, _minScale);
         _mapImage.transform.localScale = scale * Vector3.one;        
+    }
+    
+    public void AddInteractable(string type, Vector3 worldPosition, string identifier)
+    {
+        Type t = Type.GetType( type );
+        if ( _interactableIconsPrefabs.ContainsKey( t ) )
+        {
+            GameObject icon = Instantiate( _interactableIconsPrefabs[t] ) as GameObject;
+            icon.transform.SetParent( _mapImage.transform, false );
+            icon.transform.localPosition = WorldToRadar( worldPosition );
+
+            icon.GetComponent<InteractableIcon>().Identifier = identifier;
+        }
     }
     
 }
