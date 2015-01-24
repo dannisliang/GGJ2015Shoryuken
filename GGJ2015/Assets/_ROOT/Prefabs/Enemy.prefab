@@ -1,5 +1,22 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &121298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 421298}
+  - 33: {fileID: 3321298}
+  - 23: {fileID: 2321298}
+  m_Layer: 0
+  m_Name: Graphics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &137598
 GameObject:
   m_ObjectHideFlags: 0
@@ -8,13 +25,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 437598}
-  - 33: {fileID: 3337598}
   - 135: {fileID: 13537598}
-  - 23: {fileID: 2337598}
   - 114: {fileID: 11437600}
-  - 114: {fileID: 11437598}
-  - 54: {fileID: 5437598}
   - 114: {fileID: 11437602}
+  - 54: {fileID: 5421298}
+  - 114: {fileID: 11421300}
+  - 114: {fileID: 11421298}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -39,6 +55,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &421298
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121298}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: .5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 437598}
+  m_RootOrder: 0
 --- !u!4 &437598
 Transform:
   m_ObjectHideFlags: 1
@@ -46,9 +74,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137598}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.0999999, z: 24}
+  m_LocalPosition: {x: 0, y: 0, z: 24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 421298}
   - {fileID: 462416}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,13 +92,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 437598}
-  m_RootOrder: 0
---- !u!23 &2337598
+  m_RootOrder: 1
+--- !u!23 &2321298
 Renderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 137598}
+  m_GameObject: {fileID: 121298}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,14 +113,14 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3337598
+--- !u!33 &3321298
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 137598}
+  m_GameObject: {fileID: 121298}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &5437598
+--- !u!54 &5421298
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -101,12 +130,12 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: .0500000007
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &11437598
+--- !u!114 &11421298
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -114,13 +143,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 137598}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3985c262f2dc6e44a32f648fc2b8363, type: 3}
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 2
-  target: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  trajectoryPoints: []
+  priority: 1
+  smoothType: 0
+  subdivisions: 2
+  iterations: 2
+  strength: .5
+  uniformLength: 1
+  maxSegmentLength: 2
+  bezierTangentLength: .400000006
+  offset: .200000003
+  factor: .100000001
+--- !u!114 &11421300
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f586f285b3847808d79083bd19ef1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 2
 --- !u!114 &11437600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -136,7 +183,7 @@ MonoBehaviour:
   detailedGizmos: 0
   saveGetNearestHints: 1
   startEndModifier:
-    priority: 1
+    priority: 3
     addPoints: 0
     exactStartPoint: 3
     exactEndPoint: 3
@@ -164,13 +211,15 @@ MonoBehaviour:
   target: {fileID: 0}
   canSearch: 1
   canMove: 1
-  speed: 3
-  turningSpeed: 20
-  slowdownDistance: 1
-  pickNextWaypointDist: 2
-  forwardLook: 1
-  endReachedDistance: 2
+  speed: 6
+  turningSpeed: 9
+  slowdownDistance: 0
+  pickNextWaypointDist: 3
+  forwardLook: 2
+  endReachedDistance: 3
   closestOnPathCheck: 1
+  myDist: 0
+  myTargetYOLO: {x: 0, y: 0, z: 0}
 --- !u!114 &11462416
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b6d99d5537c56408b37b343f5347c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 11437598}
+  enemy: {fileID: 0}
 --- !u!135 &13537598
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -194,7 +243,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: .5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: .5, z: 0}
 --- !u!135 &13562416
 SphereCollider:
   m_ObjectHideFlags: 1
