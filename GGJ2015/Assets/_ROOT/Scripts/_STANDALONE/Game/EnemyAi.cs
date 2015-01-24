@@ -13,7 +13,6 @@ public enum EnemyState
 }
 
 public class EnemyAi : MonoBehaviour {
-	
 
 	static float EnemyAttackSpeed = 10;
 	static float EnemyWalkSpeed = 6;
@@ -22,20 +21,19 @@ public class EnemyAi : MonoBehaviour {
 	static float TimeWaited = 10;
 
 	public EnemyState state;
-	public GameObject target = new GameObject();
+	public Transform target;
 	public GameObject spawnPoint;
 
-	public List<GameObject> trajectoryPoints = new List<GameObject>();
+	public EnemyRoundPath roundPath;
 
 	private Seeker m_seeker;
 	private AIPath m_path;
 
-	public EnemyAi(GameObject targetObj, EnemyState stateAi, GameObject spawn, List<GameObject> pathPoints)
+	public EnemyAi(Transform targetObj, EnemyState stateAi, GameObject spawn)
 	{
 		target = targetObj;
 		state = stateAi;
 		spawnPoint = spawn;
-		trajectoryPoints = pathPoints;
 	}
 
 
@@ -43,33 +41,41 @@ public class EnemyAi : MonoBehaviour {
 	void Start () {
 		m_seeker = GetComponent<Seeker>();
 		m_path = GetComponent<AIPath>();
-		m_path.target = target.transform;
+		if(target != null)
+			m_path.target = target;
 		m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
 		spawnPoint = new GameObject();
 		spawnPoint.transform.position = transform.position;
+
+		InvokeRepeating("PingPosition", 1, 1);
 	}
 
 	float time = 0;
 	// Update is called once per frame
 	void Update () {
-		if(target.transform != m_path.target.transform)
+		if(target != m_path.target)
 		{
-			m_path.target = target.transform;
-			m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
+			m_path.target = target;
 		}
 
 		switch(state)
 		{
+			case EnemyState.Flee:
+			{
+				m_path.speed = EnemyFleeSpeed;
+				if(m_path.TargetReached)
+					state = EnemyState.Waiting;
+			}
+			break;
 			case EnemyState.Attack:
 			{
 				m_path.speed = EnemyAttackSpeed;
-				m_path.canMove = true;
 			}
 			break;
 			case EnemyState.Waiting:
 			{
-				m_path.canMove = false;
-				rigidbody.velocity = Vector3.zero;
+				target = null;
+				
 				time += Time.deltaTime;
 				if(time > TimeWaited){
 					time = 0;
@@ -80,15 +86,6 @@ public class EnemyAi : MonoBehaviour {
 			case EnemyState.Alerted:
 			{
 				m_path.speed = EnemyAlertedSpeed;
-				m_path.canMove = true;
-				if(m_path.TargetReached)
-					state = EnemyState.Waiting;
-			}
-			break;
-			case EnemyState.Flee:
-			{
-				m_path.speed = EnemyFleeSpeed;
-				m_path.canMove = true;
 				if(m_path.TargetReached)
 					state = EnemyState.Waiting;
 			}
@@ -96,33 +93,36 @@ public class EnemyAi : MonoBehaviour {
 			case EnemyState.Walking:
 			{
 				m_path.speed = EnemyWalkSpeed;
-				m_path.canMove = true;
-				if(trajectoryPoints.Count > 0)
+				if(roundPath.PathPoints.Length <= 0)
 					break;
 				if(target == null)
 				{
-					target.transform.position = trajectoryPoints[0].transform.position;
-					m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
-					break;
+					target = roundPath.PathPoints[0];
+						break;
 				}
 				
 				if(m_path.TargetReached){
-					for(int i = 0; i<trajectoryPoints.Count; i++)
+					for(int i = 0; i<roundPath.PathPoints.Length; i++)
 					{
-						if(trajectoryPoints[i].transform.position == target.transform.position)
+						if(roundPath.PathPoints[i].position == target.position)
 						{
-							if(i-1 == trajectoryPoints.Count)
+							if(i-1 == roundPath.PathPoints.Length && roundPath.PathPoints.Length > 0)
 								i = 0;
-							target.transform.position = trajectoryPoints[i].transform.position;
-							m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
+							target.position = roundPath.PathPoints[i].position;
 							break;
 						}
-							
 					}
 				}
 			}
 			break;
 		}
+	}
+
+	private void PingPosition()
+	{
+		PingMonsterPosition ping = PingMonsterPosition.Create();
+		ping.Position = transform.position;
+		ping.Send();
 	}
 
 

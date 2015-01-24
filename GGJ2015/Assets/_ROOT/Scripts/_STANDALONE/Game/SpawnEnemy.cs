@@ -24,7 +24,7 @@ public class SpawnEnemy : MonoBehaviour {
 			GameObject obj = (GameObject)GameObject.Instantiate(enemyPrefab, transform.position, Quaternion.identity);
 			EnemyAi enemy  = obj.GetComponent<EnemyAi>();
 			enemy.state = stateSpawn;
-			enemy.target = collider;
+			enemy.target = collider.transform;
 			enemy.spawnPoint = gameObject;
 		}
 	}

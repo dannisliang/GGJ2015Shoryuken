@@ -44,14 +44,14 @@ public class Alarm : MonoBehaviour {
 				EnemyAi enemy = other.GetComponent<EnemyAi>();
 				if(m_type == AlarmType.Attractive)
 				{
-					enemy.target = gameObject;
+					enemy.target = transform;
 					enemy.state = EnemyState.Alerted;
 				}
-				else if(m_type == AlarmType.Repulsive)
+				/*else if(m_type == AlarmType.Repulsive)
 				{
-					enemy.target = enemy.spawnPoint;
+					enemy.target = enemy.spawnPoint.transform;
 					enemy.state = EnemyState.Flee;
-				}
+				}*/
 			}
 		}
 	}
