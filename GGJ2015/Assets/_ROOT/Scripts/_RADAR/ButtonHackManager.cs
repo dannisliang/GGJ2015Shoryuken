@@ -18,6 +18,10 @@ public class ButtonHackManager : MonoBehaviour, IPointerClickHandler {
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Click");
+        GameObject go = Object.Instantiate(m_contextMenu) as GameObject;
+        RadarManager.Instance.Parent(go);
+        go.transform.localPosition = go.transform.localPosition;
+        RadarManager.Instance.SetOpenedMenu(go);
+        RadarManager.Instance.ToggleScan(false);
     }
 }
