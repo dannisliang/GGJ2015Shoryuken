@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
 
@@ -64,7 +65,7 @@ public class RadarManager : MonoBehaviour {
     {
         m_playerPos = Vector2.zero;
         m_barGO = Instantiate(radarBarPrefab) as GameObject;
-        m_barGO.transform.SetParent(_canvas.transform, false);
+        m_barGO.transform.SetParent(_mapImage.transform, false);
         m_barGO.transform.localPosition = new Vector3(m_playerPos.x, m_playerPos.y, offsetZ);
         m_barGO.transform.rotation = Quaternion.identity;
     }
@@ -118,7 +119,7 @@ public class RadarManager : MonoBehaviour {
 
     public void ZoomMap(float delta)
     {
-
+        _mapImage.transform.localScale += delta * Vector3.one;
     }
-
+    
 }
