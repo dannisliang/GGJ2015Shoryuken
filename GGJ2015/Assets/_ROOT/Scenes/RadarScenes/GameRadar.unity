@@ -486,6 +486,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1129481024}
   - 114: {fileID: 1129481025}
+  - 114: {fileID: 1129481026}
   m_Layer: 0
   m_Name: RadarManager
   m_TagString: Untagged
@@ -519,6 +520,22 @@ MonoBehaviour:
   m_radar: {fileID: 1344712770}
   m_radarBar: {fileID: 178934, guid: 3da43eaaa6d3bde44897a5fd7235f4a1, type: 2}
   m_radarBlip: {fileID: 168464, guid: e1eaf80875bd41d47b9b8ba1ca2cae4a, type: 2}
+--- !u!114 &1129481026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1129481023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52d492e4074eac448b9637aa3cad6c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  selectedCamera: {fileID: 309679526}
+  minPinchSpeed: 10
+  varianceInDistances: 5
+  minDistDelta: .5
 --- !u!1 &1344712770
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,7 +547,6 @@ GameObject:
   - 223: {fileID: 1344712774}
   - 114: {fileID: 1344712773}
   - 114: {fileID: 1344712772}
-  - 114: {fileID: 1344712776}
   m_Layer: 5
   m_Name: RadarCanvas
   m_TagString: Untagged
@@ -611,18 +627,6 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: -1
---- !u!114 &1344712776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1344712770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 250d3fef67c244e42bdf90c58711fd97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_contextMenu: {fileID: 0}
 --- !u!1 &1653497275
 GameObject:
   m_ObjectHideFlags: 0

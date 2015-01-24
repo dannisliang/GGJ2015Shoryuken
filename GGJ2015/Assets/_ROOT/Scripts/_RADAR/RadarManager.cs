@@ -69,6 +69,11 @@ public class RadarManager : MonoBehaviour {
         }
     }
 
+    void Update()
+    {
+
+    }
+
 	// Update is called once per frame
 	void FixedUpdate () {
         if (m_barGO == null || !m_isScanning)
