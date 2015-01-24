@@ -378,6 +378,10 @@ public class AIPath : MonoBehaviour {
 	 * /see targetDirection
 	 * /see currentWaypointIndex
 	 */
+
+    public float myDist = 0;
+    public Vector3 myTargetYOLO;
+
 	protected Vector3 CalculateVelocity (Vector3 currentPosition) {
 		if (path == null || path.vectorPath == null || path.vectorPath.Count == 0) return Vector3.zero; 
 		
@@ -418,6 +422,9 @@ public class AIPath : MonoBehaviour {
 		dir = targetPosition-currentPosition;
 		dir.y = 0;
 		float targetDist = dir.magnitude;
+
+        myDist = targetDist;
+        myTargetYOLO = targetPosition;
 		
 		float slowdown = Mathf.Clamp01 (targetDist / slowdownDistance);
 		
