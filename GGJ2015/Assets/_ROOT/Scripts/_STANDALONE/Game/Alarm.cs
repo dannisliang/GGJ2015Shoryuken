@@ -1,0 +1,85 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public enum AlarmType
+{
+	Repulsive,
+	Attractive
+}
+
+public class Alarm : MonoBehaviour {
+
+	public bool m_isActive;
+	
+	public AlarmType m_type;
+	public SphereCollider collider;
+	public  float m_radiusMax;
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+
+	//float time = 0;
+	// Update is called once per frame
+	void Update () {
+		if(IsActive)
+		{
+			if(collider.radius < m_radiusMax)
+				collider.radius += Time.deltaTime*10;
+			else
+				collider.radius = 0;
+		}
+		else
+		{
+			collider.radius = 0;
+		}
+	}
+
+	public void OnTriggerEnter(Collider other)
+	{
+		if(IsActive){
+			if(other.tag == "Enemy")
+			{
+				EnemyAi enemy = other.GetComponent<EnemyAi>();
+				if(m_type == AlarmType.Attractive)
+				{
+					enemy.target = gameObject;
+					enemy.state = EnemyState.Alerted;
+				}
+				else if(m_type == AlarmType.Repulsive)
+				{
+					enemy.target = enemy.spawnPoint;
+					enemy.state = EnemyState.Flee;
+				}
+			}
+		}
+	}
+
+	public AlarmType Type {
+		get {
+			return m_type;
+		}
+		set {
+			m_type = value;
+		}
+	}
+
+	public float RadiusMax {
+		get {
+			return m_radiusMax;
+		}
+		set {
+			m_radiusMax = value;
+		}
+	}
+
+	public bool IsActive {
+		get {
+			return m_isActive;
+		}
+		set {
+			m_isActive = value;
+		}
+	}
+}
