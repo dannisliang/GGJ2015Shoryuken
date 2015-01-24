@@ -1661,9 +1661,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_isActive: 1
-  m_type: 0
+  m_type: 1
   collider: {fileID: 2118655376}
   m_radiusMax: 20
+  m_maxTime: 10
 --- !u!4 &2118655378
 Transform:
   m_ObjectHideFlags: 0

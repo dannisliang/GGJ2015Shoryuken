@@ -14,13 +14,14 @@ public class Alarm : MonoBehaviour {
 	public AlarmType m_type;
 	public SphereCollider collider;
 	public  float m_radiusMax;
+	public float m_maxTime;
 
 	// Use this for initialization
 	void Start () {
 	
 	}
 
-	//float time = 0;
+	float time = 0;
 	// Update is called once per frame
 	void Update () {
 		if(IsActive)
@@ -29,11 +30,20 @@ public class Alarm : MonoBehaviour {
 				collider.radius += Time.deltaTime*10;
 			else
 				collider.radius = 0;
+
+			time += Time.deltaTime;
+			if(time >= m_maxTime)
+			{
+				time = 0;
+				IsActive = false;
+			}
 		}
 		else
 		{
 			collider.radius = 0;
 		}
+
+
 	}
 
 	public void OnTriggerEnter(Collider other)
