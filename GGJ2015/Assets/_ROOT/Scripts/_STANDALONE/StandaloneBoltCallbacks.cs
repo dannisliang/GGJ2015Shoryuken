@@ -8,8 +8,18 @@ using Kathulhu;
 public class StandaloneBoltCallbacks : GlobalEventListener
 {
 
+    public override void Disconnected( BoltConnection connection )
+    {
+        Debug.Log( "StandaloneBoltCallback:Disconnected" );
+        if ( GameController.ActiveSceneManager.SceneName == "Game" )
+        {
+            GameController.LoadScene( "MainMenu" );
+        }
+    }
+
     public override void Connected( BoltConnection connection )
     {
+        Debug.Log( "StandaloneBoltCallback:Connected->" + connection.RemoteEndPoint );
         if (GameController.ActiveSceneManager.SceneName == "MainMenu")
         {
             var evt = EnterTheGameScene.Create();
