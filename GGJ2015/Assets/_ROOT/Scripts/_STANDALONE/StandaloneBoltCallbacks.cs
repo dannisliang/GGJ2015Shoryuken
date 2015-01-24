@@ -8,22 +8,22 @@ using Kathulhu;
 public class StandaloneBoltCallbacks : GlobalEventListener
 {
 
-    public override void BoltStarted()
-    {
-        base.BoltStarted();
-
-        Debug.Log( "Bolt:BoltStarted" );
-    }
-
     public override void Connected( BoltConnection connection )
     {
         if (GameController.ActiveSceneManager.SceneName == "MainMenu")
         {
-            GameController.LoadScene( "Game" );
+            var evt = EnterTheGameScene.Create();
+            evt.Send();
         }
     }
 
-    List<string> logMessages = new List<string>();
+    public override void OnEvent( EnterTheGameScene evnt )
+    {
+        if ( GameController.ActiveSceneManager.SceneName == "MainMenu" )
+            GameController.LoadScene( "Game" );
+    }
+
+    //List<string> logMessages = new List<string>();
 
     //void OnGUI()
     //{
