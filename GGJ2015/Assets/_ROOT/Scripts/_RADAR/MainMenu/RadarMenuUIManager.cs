@@ -6,11 +6,12 @@ public class RadarMenuUIManager : MonoBehaviour {
 
     public InputField inputField;//set in the inspector
 
-    public void JoinGame( )
-    {        
+    private JoinGameCmd joinGame = new JoinGameCmd();    
 
-        BoltLauncher.StartClient();
-        BoltNetwork.Connect( UdpKit.UdpEndPoint.Parse( inputField.text + ":27000" ) );
+    public void JoinGame( )
+    {
+        joinGame.ip = inputField.text;
+        joinGame.Execute();
 
     }
 }
