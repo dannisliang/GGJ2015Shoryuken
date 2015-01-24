@@ -13,9 +13,10 @@ public class AppInit : MonoBehaviour
 #if UNITY_ANDROID
         GameController.LoadScene( "MainMenuRadar" );
 #else
-        GameController.LoadScene( host ? "MainMenu" : "MainMenuRadar" );
+        GameController.LoadScene( host ? "MainMenu" : "MainMenuRadar" , true );
 #endif
 
+        Destroy( gameObject );
 	}
 
 }
