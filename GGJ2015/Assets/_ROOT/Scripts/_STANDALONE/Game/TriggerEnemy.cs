@@ -17,7 +17,7 @@ public class TriggerEnemy : MonoBehaviour {
 
 	public void OnTriggerEnter(Collider other)
 	{
-		if(other.name == "Player")
+		if(other.name == "Player" && enemy.state != EnemyState.Flee)
 			enemy.state = EnemyState.Attack;
 	}
 }
