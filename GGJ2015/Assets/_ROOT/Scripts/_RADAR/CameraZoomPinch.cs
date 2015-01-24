@@ -4,9 +4,6 @@ using System.Collections;
 public class CameraZoomPinch : MonoBehaviour
 {
     public int speed = 3;
-    public Camera selectedCamera;
-    //public float MINSCALE = 2.0F;
-    //public float MAXSCALE = 5.0F;
     public float minPinchSpeed = 8.0F;
     public float varianceInDistances = 2.0F;
     public float minDistDelta = 0.5f;
@@ -17,20 +14,15 @@ public class CameraZoomPinch : MonoBehaviour
     private float speedTouch0 = 0.0F;
     private float speedTouch1 = 0.0F;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
+    
     void Update()
     {
 
         if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
         {
             Vector2 deltaPos = Input.GetTouch(0).deltaPosition;
-            selectedCamera.transform.position -= new Vector3(deltaPos.x, deltaPos.y, 0.0f);
+
+            RadarManager.Instance.MoveMap( deltaPos );
         }
 
         else if (Input.touchCount == 2 && Input.GetTouch(0).phase == TouchPhase.Moved && Input.GetTouch(1).phase == TouchPhase.Moved)
@@ -45,16 +37,10 @@ public class CameraZoomPinch : MonoBehaviour
                 return;
 
             if ((touchDelta + varianceInDistances <= 1) && (speedTouch0 > minPinchSpeed) && (speedTouch1 > minPinchSpeed))
-            {
-
-                selectedCamera.fieldOfView = Mathf.Clamp(selectedCamera.fieldOfView + (1 * speed), 15, 90);
-            }
+                RadarManager.Instance.ZoomMap( speed );
 
             if ((touchDelta + varianceInDistances > 1) && (speedTouch0 > minPinchSpeed) && (speedTouch1 > minPinchSpeed))
-            {
-
-                selectedCamera.fieldOfView = Mathf.Clamp(selectedCamera.fieldOfView - (1 * speed), 15, 90);
-            }
+                RadarManager.Instance.ZoomMap( -speed );
 
         }
     }

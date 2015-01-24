@@ -1,36 +1,51 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class RadarManager : MonoBehaviour {
 
     public static RadarManager Instance;
-    private bool m_isScanning = true;
 
-    public GameObject m_radar;
-    public GameObject m_radarBar;
-    public GameObject m_radarBlip;
+    [SerializeField]
+    private Image _mapImage;//reference to the Image component that displays the map, set in the inspector
+
+    //Prefabs    
+    public GameObject radarBarPrefab;
+    public GameObject radarBlipPrefab;
+
+    //Factors for world to radar position conversions
+    public float factorX = 1;
+    public float factorZ = 1;
+
+    private bool m_isScanning = true;
 
     private GameObject m_barGO;
     private Vector2 m_playerPos;
     private List<GameObject> m_targets = new List<GameObject>();
     private GameObject m_openedMenu;
-	// Use this for initialization
-	
+
+    private const float offsetZ = -2f;
+
+    private Canvas _canvas;
+
+    /// <summary>
+    /// Converts a world position to a local position relative to the Map Image
+    /// </summary>
+    Vector3 WorldToRadar( Vector3 world )
+    {        
+        return new Vector3(world.x * factorX, world.z * factorZ, offsetZ);
+    }
+
     void Awake()
     {
+        _canvas = GetComponent<Canvas>();
+
         Instance = this;
     }
     
-    void Start () {
-
-        float offsetZ = -2.0f;
-        //int size = 15;
-        //for (int i = 0; i < size; i++)
-        //{            
-        //    Vector3 pos = new Vector3(Random.Range(0, 450), Random.Range(0, 250), offsetZ);
-        //    ShowPing(pos);            
-        //}
-
+    void Start () 
+    {
         SpawnRadarBar(offsetZ);
 	}
 
@@ -39,7 +54,7 @@ public class RadarManager : MonoBehaviour {
         if (newMenu == null && m_openedMenu != null)
         {
             Destroy(m_openedMenu);
-            RadarManager.Instance.ToggleScan(true);
+            ToggleScan(true);
         }
 
         m_openedMenu = newMenu;
@@ -48,8 +63,8 @@ public class RadarManager : MonoBehaviour {
     private void SpawnRadarBar(float offsetZ)
     {
         m_playerPos = Vector2.zero;
-        m_barGO = Object.Instantiate(m_radarBar) as GameObject;
-        m_barGO.transform.SetParent(m_radar.transform, false);
+        m_barGO = Instantiate(radarBarPrefab) as GameObject;
+        m_barGO.transform.SetParent(_canvas.transform, false);
         m_barGO.transform.localPosition = new Vector3(m_playerPos.x, m_playerPos.y, offsetZ);
         m_barGO.transform.rotation = Quaternion.identity;
     }
@@ -67,13 +82,7 @@ public class RadarManager : MonoBehaviour {
             m_barGO.SetActive(false);
         }
     }
-
-    void Update()
-    {
-
-    }
-
-	// Update is called once per frame
+	
 	void FixedUpdate () {
         if (m_barGO == null || !m_isScanning)
             return;
@@ -84,17 +93,31 @@ public class RadarManager : MonoBehaviour {
 
     public void Parent(GameObject go)
     {
-        go.transform.SetParent(m_radar.transform, false);
+        go.transform.SetParent(_canvas.transform, false);
     }
 
     public void ShowPing(Vector3 worldPosition)
     {
 
-        //TODO : convert worldPosition to radar position
-        Vector3 pos = worldPosition;
+        Vector3 pos = WorldToRadar(worldPosition);
 
-        GameObject go = Object.Instantiate( m_radarBlip, pos, Quaternion.identity ) as GameObject;
+        GameObject go = Instantiate( radarBlipPrefab, pos, Quaternion.identity ) as GameObject;
         m_targets.Add( go );
+
+    }
+
+    public void MoveMap( Vector2 delta )
+    {
+        MoveMap( new Vector3( delta.x, delta.y, 0 ) );
+    }
+
+    public void MoveMap( Vector3 delta )
+    {
+        _mapImage.transform.localPosition += delta;
+    }
+
+    public void ZoomMap(float delta)
+    {
 
     }
 
