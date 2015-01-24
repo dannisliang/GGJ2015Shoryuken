@@ -12,6 +12,7 @@ public class StandaloneBoltCallbacks : GlobalEventListener
     {
         if ( GameController.ActiveSceneManager.SceneName == "Game" )
         {
+            BoltLauncher.Shutdown();
             GameController.LoadScene( "MainMenu" );
         }
     }

@@ -10,10 +10,7 @@ public class RadarBoltCallbacks : GlobalEventListener
 
     public override void Disconnected( BoltConnection connection )
     {
-        if ( GameController.ActiveSceneManager.SceneName == "GameRadar" )
-        {
             GameController.LoadScene( "MainMenuRadar" );
-        }
     }
 
     public override void OnEvent( EnterTheGameScene evnt )
