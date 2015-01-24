@@ -8,10 +8,10 @@ public class EnemyRoundPath : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Transform[] TempPathPoints = GetComponentsInChildren<Transform>();
-		PathPoints = Transform[TempPathPoints.Length-1];
+		PathPoints = new Transform[TempPathPoints.Length-1];
 		for(int i = 0; i<TempPathPoints.Length;i++)
 		{
-			if(i = 0)
+			if(i == 0)
 				continue;
 			PathPoints[i-1] = TempPathPoints[i];
 		}
