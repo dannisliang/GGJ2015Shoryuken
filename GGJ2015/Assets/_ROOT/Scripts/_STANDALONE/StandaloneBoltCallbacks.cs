@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Bolt;
+using Kathulhu;
 
 [BoltGlobalBehaviour( BoltNetworkModes.Server )]
 public class StandaloneBoltCallbacks : GlobalEventListener
@@ -16,9 +17,10 @@ public class StandaloneBoltCallbacks : GlobalEventListener
 
     public override void Connected( BoltConnection connection )
     {
-        base.Connected( connection );
-
-        logMessages.Insert( 0, string.Format( "{0} connected", connection.RemoteEndPoint ) );
+        if (GameController.ActiveSceneManager.SceneName == "MainMenu")
+        {
+            GameController.LoadScene( "Game" );
+        }
     }
 
     List<string> logMessages = new List<string>();
