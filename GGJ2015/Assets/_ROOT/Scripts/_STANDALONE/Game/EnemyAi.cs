@@ -15,22 +15,22 @@ public enum EnemyState
 public class EnemyAi : MonoBehaviour {
 	
 
-	static float EnemyAttackSpeed = 100;
-	static float EnemyWalkSpeed = 25;
-	static float EnemyAlertedSpeed = 75;
-	static float EnemyFleeSpeed = 100;
-	static float TimeWaited = 20;
+	static float EnemyAttackSpeed = 10;
+	static float EnemyWalkSpeed = 6;
+	static float EnemyAlertedSpeed = 8;
+	static float EnemyFleeSpeed = 10;
+	static float TimeWaited = 10;
 
 	public EnemyState state;
 	public GameObject target = new GameObject();
 	public GameObject spawnPoint;
 
-	public List<Transform> trajectoryPoints = new List<Transform>();
+	public List<GameObject> trajectoryPoints = new List<GameObject>();
 
 	private Seeker m_seeker;
 	private AIPath m_path;
 
-	public EnemyAi(GameObject targetObj, EnemyState stateAi, GameObject spawn, List<Transform> pathPoints)
+	public EnemyAi(GameObject targetObj, EnemyState stateAi, GameObject spawn, List<GameObject> pathPoints)
 	{
 		target = targetObj;
 		state = stateAi;
@@ -52,9 +52,10 @@ public class EnemyAi : MonoBehaviour {
 	float time = 0;
 	// Update is called once per frame
 	void Update () {
-		if(target.GetInstanceID() != m_path.GetInstanceID())
+		if(target.transform != m_path.target.transform)
 		{
 			m_path.target = target.transform;
+			m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
 		}
 
 		switch(state)
@@ -98,25 +99,27 @@ public class EnemyAi : MonoBehaviour {
 				m_path.canMove = true;
 				if(trajectoryPoints.Count > 0)
 					break;
-				/*if(target == null)
+				if(target == null)
 				{
-					target.transform.position = trajectoryPoints[0].position;
+					target.transform.position = trajectoryPoints[0].transform.position;
+					m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
 					break;
-				}*/
+				}
 				
-				/*if(m_path.TargetReached){
+				if(m_path.TargetReached){
 					for(int i = 0; i<trajectoryPoints.Count; i++)
 					{
-						if(trajectoryPoints[i].position == target.transform.position)
+						if(trajectoryPoints[i].transform.position == target.transform.position)
 						{
 							if(i-1 == trajectoryPoints.Count)
 								i = 0;
-							target.transform.position = trajectoryPoints[i].position;
-						break;
+							target.transform.position = trajectoryPoints[i].transform.position;
+							m_seeker.StartPath (transform.position, transform.position+transform.forward*m_path.speed);
+							break;
 						}
 							
 					}
-				}*/
+				}
 			}
 			break;
 		}

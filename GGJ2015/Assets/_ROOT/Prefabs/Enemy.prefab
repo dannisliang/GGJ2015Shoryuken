@@ -117,9 +117,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3985c262f2dc6e44a32f648fc2b8363, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
+  state: 2
   target: {fileID: 0}
   spawnPoint: {fileID: 0}
+  trajectoryPoints: []
 --- !u!114 &11437600
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -164,11 +165,11 @@ MonoBehaviour:
   canSearch: 1
   canMove: 1
   speed: 3
-  turningSpeed: 5
-  slowdownDistance: .600000024
+  turningSpeed: 20
+  slowdownDistance: 1
   pickNextWaypointDist: 2
   forwardLook: 1
-  endReachedDistance: .200000003
+  endReachedDistance: 2
   closestOnPathCheck: 1
 --- !u!114 &11462416
 MonoBehaviour:

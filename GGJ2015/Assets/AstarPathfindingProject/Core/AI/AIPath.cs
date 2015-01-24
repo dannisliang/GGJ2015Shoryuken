@@ -346,7 +346,8 @@ public class AIPath : MonoBehaviour {
 		} else if (controller != null) {
 			controller.SimpleMove (dir);
 		} else if (rigid != null) {
-			rigid.AddForce (dir);
+			//rigid.AddForce (dir);
+			rigid.MovePosition(transform.position+(dir*Time.deltaTime));
 		} else {
 			transform.Translate (dir*Time.deltaTime, Space.World);
 		}
