@@ -22,6 +22,13 @@ public class RadarBoltCallbacks : GlobalEventListener
             GameController.LoadScene("GameRadar");
     }
 
+    public override void OnEvent( RegisterInteractableObjectOnRadar evnt )
+    {
+        base.OnEvent( evnt );
+
+        Debug.Log("Registering InteractableObject of type " + evnt.Type + " with Identifier " + evnt.Identifier + " at position " + evnt.Position);
+    }
+
     public override void OnEvent( PingMonsterPosition evnt )
     {
         RadarManager.Instance.ShowPing( evnt.Position );
