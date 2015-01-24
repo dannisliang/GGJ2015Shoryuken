@@ -6,13 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_ROOT/Scenes/StandaloneScenes/AppStart.unity
+    path: Assets/_ROOT/Scenes/AppStart.unity
   - enabled: 1
     path: Assets/_ROOT/Scenes/StandaloneScenes/MainMenu.unity
   - enabled: 1
     path: Assets/_ROOT/Scenes/StandaloneScenes/Game.unity
-  - enabled: 1
-    path: Assets/_ROOT/Scenes/RadarScenes/AppStartRadar.unity
   - enabled: 1
     path: Assets/_ROOT/Scenes/RadarScenes/GameRadar.unity
   - enabled: 1
