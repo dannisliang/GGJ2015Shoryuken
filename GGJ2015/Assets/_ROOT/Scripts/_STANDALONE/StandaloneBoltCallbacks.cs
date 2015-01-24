@@ -6,7 +6,17 @@ using Kathulhu;
 
 [BoltGlobalBehaviour( BoltNetworkModes.Server )]
 public class StandaloneBoltCallbacks : GlobalEventListener
-{    
+{
+
+    void Update()
+    {
+        if ( Input.GetKeyDown( KeyCode.G ) )
+        {
+            PingMonsterPosition evt = PingMonsterPosition.Create();
+            evt.Position = new Vector3( Random.Range( 0f, 250f ), 0, Random.Range( 0f, 250f ) );
+            evt.Send();
+        }
+    }
 
     public override void Disconnected( BoltConnection connection )
     {
@@ -18,8 +28,7 @@ public class StandaloneBoltCallbacks : GlobalEventListener
     }
 
     public override void Connected( BoltConnection connection )
-    {
-        Debug.Log( "StandaloneBoltCallback:Connected->" + connection.RemoteEndPoint );
+    {        
         if (GameController.ActiveSceneManager.SceneName == "MainMenu")
         {
             var evt = EnterTheGameScene.Create();

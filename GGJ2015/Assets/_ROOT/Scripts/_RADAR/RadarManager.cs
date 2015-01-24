@@ -115,7 +115,9 @@ public class RadarManager : MonoBehaviour {
 
         Vector3 pos = WorldToRadar(worldPosition);
 
-        GameObject go = Instantiate( radarBlipPrefab, pos, Quaternion.identity ) as GameObject;
+        GameObject go = Instantiate( radarBlipPrefab ) as GameObject;
+        go.transform.SetParent( _mapImage.transform, false );
+        go.transform.localPosition = pos;
         m_targets.Add( go );
 
     }

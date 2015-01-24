@@ -28,7 +28,7 @@ MonoBehaviour:
     serverDejitterDelay: 6
     serverDejitterDelayMin: 3
     serverDejitterDelayMax: 9
-    serverConnectionLimit: 64
+    serverConnectionLimit: 2
     serverConnectionAcceptMode: 0
     commandDejitterDelay: 3
     commandQueueSize: 60
