@@ -6,7 +6,7 @@ using Kathulhu;
 
 [BoltGlobalBehaviour( BoltNetworkModes.Server )]
 public class StandaloneBoltCallbacks : GlobalEventListener
-{
+{    
 
     public override void Disconnected( BoltConnection connection )
     {

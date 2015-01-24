@@ -22,15 +22,14 @@ public class RadarManager : MonoBehaviour {
     }
     
     void Start () {
-        
+
         float offsetZ = -2.0f;
-        int size = 15;
-        for (int i = 0; i < size; i++)
-        {
-            Vector3 pos = new Vector3(Random.Range(0, 450), Random.Range(0, 250), offsetZ);
-            GameObject go = Object.Instantiate(m_radarBlip, pos, Quaternion.identity) as GameObject;
-            m_targets.Add(go);
-        }
+        //int size = 15;
+        //for (int i = 0; i < size; i++)
+        //{            
+        //    Vector3 pos = new Vector3(Random.Range(0, 450), Random.Range(0, 250), offsetZ);
+        //    ShowPing(pos);            
+        //}
 
         SpawnRadarBar(offsetZ);
 	}
@@ -86,6 +85,17 @@ public class RadarManager : MonoBehaviour {
     public void Parent(GameObject go)
     {
         go.transform.SetParent(m_radar.transform, false);
+    }
+
+    public void ShowPing(Vector3 worldPosition)
+    {
+
+        //TODO : convert worldPosition to radar position
+        Vector3 pos = worldPosition;
+
+        GameObject go = Object.Instantiate( m_radarBlip, pos, Quaternion.identity ) as GameObject;
+        m_targets.Add( go );
+
     }
 
 }

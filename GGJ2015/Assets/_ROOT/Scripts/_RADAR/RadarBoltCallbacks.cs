@@ -21,5 +21,10 @@ public class RadarBoltCallbacks : GlobalEventListener
         if ( GameController.ActiveSceneManager.SceneName == "MainMenuRadar" )
             GameController.LoadScene("GameRadar");
     }
+
+    public override void OnEvent( PingMonsterPosition evnt )
+    {
+        RadarManager.Instance.ShowPing( evnt.Position );
+    }
     
 }
