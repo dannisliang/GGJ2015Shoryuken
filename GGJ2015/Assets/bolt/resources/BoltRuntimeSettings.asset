@@ -48,11 +48,11 @@ MonoBehaviour:
   debugStartMapName: 
   debugPlayAsServer: 0
   showDebugInfo: 1
-  logUncaughtExceptions: 0
+  logUncaughtExceptions: 1
   clientCanInstantiateAll: 1
   debugEditorMode: 1
-  consoleToggleKey: 9
-  consoleVisibleByDefault: 0
+  consoleToggleKey: 99
+  consoleVisibleByDefault: 1
   compilationWarnLevel: 4
   editorSkin: 4
   scopeModeHideWarningInGui: 0
