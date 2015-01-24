@@ -24,8 +24,7 @@ public class GameSceneManager : SceneManager {
         evt.message = "Loading completed!";
         EventDispatcher.Event( evt );
         yield return new WaitForSeconds( 0.5f );
-
-        BoltNetwork.Instantiate( BoltPrefabs.Player );
+        
     }
 
 }
