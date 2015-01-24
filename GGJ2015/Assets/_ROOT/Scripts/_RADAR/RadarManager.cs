@@ -16,8 +16,8 @@ public class RadarManager : MonoBehaviour {
     public GameObject radarBlipPrefab;
 
     //Factors for world to radar position conversions
-    public float factorX = 1;
-    public float factorZ = 1;
+    public float worldToLocalScaleFactorX = 1;
+    public float worldToLocalScaleFactorZ = 1;
 
     private bool m_isScanning = true;
 
@@ -26,22 +26,33 @@ public class RadarManager : MonoBehaviour {
     private List<GameObject> m_targets = new List<GameObject>();
     private GameObject m_openedMenu;
 
+    private float _minScale = 1;
+
     private const float offsetZ = -2f;
 
     private Canvas _canvas;
+    private CanvasScaler _canvasScaler;
 
     /// <summary>
     /// Converts a world position to a local position relative to the Map Image
     /// </summary>
     Vector3 WorldToRadar( Vector3 world )
     {        
-        return new Vector3(world.x * factorX, world.z * factorZ, offsetZ);
+        return new Vector3(world.x * worldToLocalScaleFactorX, world.z * worldToLocalScaleFactorZ, offsetZ);
     }
 
     void Awake()
     {
+        //cache components
         _canvas = GetComponent<Canvas>();
+        _canvasScaler = GetComponent<CanvasScaler>();
 
+        //setup Map's Image component
+        _mapImage.SetNativeSize();
+        _minScale = _canvasScaler.referenceResolution.y / _mapImage.rectTransform.sizeDelta.y;
+        _mapImage.rectTransform.localScale = _minScale * Vector3.one;
+
+        //set Singleton reference
         Instance = this;
     }
     
@@ -119,7 +130,8 @@ public class RadarManager : MonoBehaviour {
 
     public void ZoomMap(float delta)
     {
-        _mapImage.transform.localScale += delta * Vector3.one;
+        float scale = Mathf.Max( _mapImage.transform.localScale.y + delta, _minScale);
+        _mapImage.transform.localScale = scale * Vector3.one;        
     }
     
 }
