@@ -23,6 +23,7 @@ public class GameSceneManager : SceneManager {
             registerEvt.Identifier = item.Identifier;
             registerEvt.Type = item.GetType().ToString();
             registerEvt.Position = item.transform.position;
+            registerEvt.Visible = item.IsVisible;
 
             registerEvt.Send();
         }

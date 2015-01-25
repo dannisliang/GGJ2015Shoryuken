@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
+using Kathulhu;
 
 public class RadarManager : MonoBehaviour {
 
@@ -11,8 +12,11 @@ public class RadarManager : MonoBehaviour {
     [SerializeField]
     private Image _mapImage;//reference to the Image component that displays the map, set in the inspector
 
-    //Prefabs    
-    public GameObject radarBarPrefab;    
+    //Prefabs   
+    [SerializeField]
+    private GameObject radarBarPrefab;
+    [SerializeField]
+    private GameObject playerMarkerPrefab;    
 
     //Factors for world to radar position conversions
     private float worldToLocalScaleFactorX = 10f;
@@ -39,6 +43,8 @@ public class RadarManager : MonoBehaviour {
     private Canvas _canvas;
     private ScrollRect _scrollRect;
     private CanvasScaler _canvasScaler;
+
+    private GameObject _playerMarker;
 
     /// <summary>
     /// Converts a world position to a local position relative to the Map Image
@@ -80,7 +86,9 @@ public class RadarManager : MonoBehaviour {
 
     void Start () 
     {
-        SpawnRadarBar();
+        SpawnPlayerMarker();
+
+        SpawnRadarBar();        
 	}
 
     public void SetOpenedMenu(GameObject newMenu)
@@ -101,6 +109,15 @@ public class RadarManager : MonoBehaviour {
         m_barGO.transform.SetParent(_mapImage.transform, false);
         m_barGO.transform.localPosition = new Vector3(0, 0, 0);
         m_barGO.transform.rotation = Quaternion.identity;
+    }
+
+    private void SpawnPlayerMarker()
+    {
+        _playerMarker = Instantiate( playerMarkerPrefab ) as GameObject;
+        _playerMarker.transform.SetParent( _mapImage.transform, false );
+        _playerMarker.transform.localPosition = new Vector3( 0, 0, 0 );
+
+        _playerMarker.SetActive( false );
     }
 
     public void ToggleScan(bool isScanning)
@@ -146,6 +163,18 @@ public class RadarManager : MonoBehaviour {
         go.transform.localPosition = pos;
     }
 
+    public void SetPlayerMarkerPosition( Vector3 worldPosition )
+    {
+        if ( _playerMarker == null )
+            return;
+
+        _playerMarker.SetActive( true );
+
+        Vector3 pos = WorldToRadar( worldPosition );
+
+        _playerMarker.transform.localPosition = pos;
+    }
+
     public void MoveMap( Vector2 delta )
     {
         MoveMap( new Vector3( delta.x, delta.y, 0 ) );
@@ -163,7 +192,7 @@ public class RadarManager : MonoBehaviour {
         _mapImage.transform.localScale = scale * Vector3.one;
     }
     
-    public void AddInteractable(string type, Vector3 worldPosition, string identifier)
+    public void AddInteractable(string type, Vector3 worldPosition, string identifier, bool visible = true)
     {
         Type t = Type.GetType( type );
         if ( _interactableIconsPrefabs.ContainsKey( t ) )
@@ -172,7 +201,25 @@ public class RadarManager : MonoBehaviour {
             icon.transform.SetParent( _mapImage.transform, false );
             icon.transform.localPosition = WorldToRadar( worldPosition );
             icon.transform.localScale = m_iconScale * Vector3.one;
-            icon.GetComponent<InteractableIcon>().Identifier = identifier;
+            InteractableIcon interIcon = icon.GetComponent<InteractableIcon>();
+            interIcon.Identifier = identifier;
+
+            interIcon.IsVisible = visible;            
+        }
+    }
+
+    public void SetInteractableVisibility(string identifier, bool visible)
+    {
+        foreach ( var item in GameController.Registry.ResolveAll<InteractableIcon>() )
+        {
+            if ( item == null )
+                continue;
+
+            if ( item.Identifier == identifier )
+            {
+                item.IsVisible = visible;
+                break;
+            }
         }
     }
     
