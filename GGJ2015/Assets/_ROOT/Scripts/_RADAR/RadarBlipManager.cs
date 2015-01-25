@@ -1,10 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class RadarBlipManager : MonoBehaviour {
 
     private float appearsTime = 0.1f;
     private float disappearsTime = 1.0f;
+
+    void Awake()
+    {
+        renderer.material.color = Color.red;
+    }
 
     public void Trigger()
     {
@@ -14,7 +20,8 @@ public class RadarBlipManager : MonoBehaviour {
     IEnumerator Appears()
     {
         yield return new WaitForSeconds(appearsTime);
-        GetComponent<MeshRenderer>().enabled = true;
+        GetComponent<MeshRenderer>().enabled = true;        
+
         StartCoroutine("Disappears");
     }
 
