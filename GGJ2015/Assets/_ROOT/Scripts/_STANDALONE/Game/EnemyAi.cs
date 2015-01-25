@@ -158,4 +158,12 @@ public class EnemyAi : MonoBehaviour {
 			m_path = value;
 		}
 	}
+
+	public void OnCollisionEnter(Collision other)
+	{
+		if(other.transform.tag == "Player")
+		{
+			GameManager.Instance.RevivePlayer();
+		}
+	}
 }
