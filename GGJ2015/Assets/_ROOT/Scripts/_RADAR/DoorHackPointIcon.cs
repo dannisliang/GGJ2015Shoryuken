@@ -7,10 +7,13 @@ public class DoorHackPointIcon : InteractableIcon
 
     public override void OnPointerClick( UnityEngine.EventSystems.PointerEventData eventData )
     {
-        //do something
-        UnlockDoor unlock = UnlockDoor.Create();
-        unlock.HackPointIdentifier = Identifier;
-        unlock.Send();
+
+        HackingPanelGameCommand cmd = new HackingPanelGameCommand();
+        cmd.Execute();
+
+        //UnlockDoor unlock = UnlockDoor.Create();
+        //unlock.HackPointIdentifier = Identifier;
+        //unlock.Send();
     }
 
 }
