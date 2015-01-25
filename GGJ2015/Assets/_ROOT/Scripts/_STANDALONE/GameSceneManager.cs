@@ -12,12 +12,15 @@ public class GameSceneManager : SceneManager {
         evt.message = "Scene setup...";
         EventDispatcher.Event( evt );
 
-        RegisterInteractableObjectOnRadar registerEvt = RegisterInteractableObjectOnRadar.Create();
+        yield return new WaitForSeconds( 1 ); ;
+        
         foreach ( var item in GameController.Registry.ResolveAll<InteractableObject>() )
         {
+            RegisterInteractableObjectOnRadar registerEvt = RegisterInteractableObjectOnRadar.Create();
             registerEvt.Identifier = item.Identifier;
             registerEvt.Type = item.GetType().ToString();
             registerEvt.Position = item.transform.position;
+
             registerEvt.Send();
         }
 

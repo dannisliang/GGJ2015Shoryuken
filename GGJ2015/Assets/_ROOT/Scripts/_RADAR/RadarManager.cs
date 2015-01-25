@@ -58,6 +58,7 @@ public class RadarManager : MonoBehaviour {
 
         //Map interactable icons types
         _interactableIconsPrefabs.Add( Type.GetType( "Door" ), Resources.Load("DoorIcon") as GameObject );
+        _interactableIconsPrefabs.Add( Type.GetType( "DoorHackPoint" ), Resources.Load( "DoorHackPointIcon" ) as GameObject );
 
         //set Singleton reference
         Instance = this;
@@ -84,7 +85,7 @@ public class RadarManager : MonoBehaviour {
         m_playerPos = Vector2.zero;
         m_barGO = Instantiate(radarBarPrefab) as GameObject;
         m_barGO.transform.SetParent(_scrollRect.transform, false);
-        m_barGO.transform.localPosition = new Vector3(m_playerPos.x, m_playerPos.y, offsetZ);
+        m_barGO.transform.localPosition = new Vector3(0, 0, offsetZ);
         m_barGO.transform.rotation = Quaternion.identity;
     }
 
@@ -107,7 +108,6 @@ public class RadarManager : MonoBehaviour {
             return;
 
         m_barGO.transform.Rotate(Vector3.forward, -1.25f);
-        float barAngle = m_barGO.transform.rotation.eulerAngles.z;
     }
 
     public void Parent(GameObject go)
