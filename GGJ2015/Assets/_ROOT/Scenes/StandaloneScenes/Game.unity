@@ -1460,7 +1460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dottedLineIndice: -1
-  _isVisible: 0
+  _isVisible: 1
 --- !u!4 &34096365
 Transform:
   m_ObjectHideFlags: 0
@@ -9426,6 +9426,10 @@ Prefab:
     - target: {fileID: 170550, guid: dc6fef0ba275ff34abb61632f299fbfd, type: 2}
       propertyPath: m_Name
       value: DoorHackPoint2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11470550, guid: dc6fef0ba275ff34abb61632f299fbfd, type: 2}
+      propertyPath: _isVisible
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc6fef0ba275ff34abb61632f299fbfd, type: 2}
@@ -21249,7 +21253,7 @@ Transform:
   m_PrefabInternal: {fileID: 877997739}
   m_GameObject: {fileID: 749125942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -45.1100006, y: 1, z: 37.2299995}
+  m_LocalPosition: {x: .469999999, y: 1, z: -.0399999991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 549297238}
@@ -22443,6 +22447,10 @@ Prefab:
       propertyPath: m_Name
       value: DoorHackPoint3
       objectReference: {fileID: 0}
+    - target: {fileID: 11470550, guid: dc6fef0ba275ff34abb61632f299fbfd, type: 2}
+      propertyPath: _isVisible
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc6fef0ba275ff34abb61632f299fbfd, type: 2}
   m_RootGameObject: {fileID: 1738445967}
@@ -22529,8 +22537,8 @@ Transform:
   m_PrefabParentObject: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
   m_PrefabInternal: {fileID: 2013266632}
   m_GameObject: {fileID: 840143843}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -40, y: 2, z: 50}
+  m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106829}
+  m_LocalPosition: {x: -51.3100014, y: 2, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 235204910}
@@ -22965,7 +22973,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 475948, guid: 5a89af0d4bd946b4c87a7eafb75ea3df, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -45.1100006
+      value: .469999999
       objectReference: {fileID: 0}
     - target: {fileID: 475948, guid: 5a89af0d4bd946b4c87a7eafb75ea3df, type: 2}
       propertyPath: m_LocalPosition.y
@@ -22973,7 +22981,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475948, guid: 5a89af0d4bd946b4c87a7eafb75ea3df, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 37.2299995
+      value: -.0399999991
       objectReference: {fileID: 0}
     - target: {fileID: 475948, guid: 5a89af0d4bd946b4c87a7eafb75ea3df, type: 2}
       propertyPath: m_LocalRotation.x
@@ -23073,7 +23081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dottedLineIndice: -1
-  _isVisible: 0
+  _isVisible: 1
 --- !u!4 &881296279
 Transform:
   m_ObjectHideFlags: 0
@@ -41191,7 +41199,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -12.7399998
+      value: -14.9300003
       objectReference: {fileID: 0}
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalPosition.y
@@ -41199,7 +41207,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 21.8299999
+      value: 21.5200005
       objectReference: {fileID: 0}
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalRotation.x
@@ -41921,7 +41929,7 @@ Transform:
   m_PrefabInternal: {fileID: 1425380575}
   m_GameObject: {fileID: 1468470555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.7399998, y: 2.04999995, z: 21.8299999}
+  m_LocalPosition: {x: -14.9300003, y: 2.04999995, z: 21.5200005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 235204910}
@@ -48398,7 +48406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dottedLineIndice: -1
-  _isVisible: 0
+  _isVisible: 1
 --- !u!4 &1738445969
 Transform:
   m_ObjectHideFlags: 0
@@ -52662,6 +52670,10 @@ Prefab:
       propertyPath: m_Name
       value: DoorHackPoint1
       objectReference: {fileID: 0}
+    - target: {fileID: 11470550, guid: dc6fef0ba275ff34abb61632f299fbfd, type: 2}
+      propertyPath: _isVisible
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dc6fef0ba275ff34abb61632f299fbfd, type: 2}
   m_RootGameObject: {fileID: 881296277}
@@ -52997,7 +53009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1886380287
 Transform:
   m_ObjectHideFlags: 0
@@ -55950,7 +55962,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -40
+      value: -51.3100014
       objectReference: {fileID: 0}
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalPosition.y
@@ -55966,7 +55978,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -.707106829
       objectReference: {fileID: 0}
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalRotation.z
@@ -55974,7 +55986,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 425572, guid: 46cb06b764ae4a04bb32039b8629a3ff, type: 2}
       propertyPath: m_RootOrder

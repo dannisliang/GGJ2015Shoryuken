@@ -26,6 +26,7 @@ public class RadarBoltCallbacks : GlobalEventListener
 
     public override void OnEvent( SetInteractableIconVisibility evnt )
     {
+        Debug.Log( "On:SetInteractableIconVisibility:" + evnt.InteractableIdentifier + " " + evnt.Visible );
         RadarManager.Instance.SetInteractableVisibility( evnt.InteractableIdentifier, evnt.Visible );
 
         if ( evnt.DottedLineIndice >= 0 )
