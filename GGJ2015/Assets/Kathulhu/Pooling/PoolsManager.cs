@@ -77,7 +77,7 @@
         /// </summary>
         public GameObject Spawn( string prefabName, Vector3 pos, Quaternion rot )
         {
-            ObjectPool pool = GetObjectPool( gameObject.name );
+            ObjectPool pool = GetObjectPool( prefabName );
             if ( pool != null )
                 return pool.Spawn( Vector3.zero, Quaternion.identity );
 

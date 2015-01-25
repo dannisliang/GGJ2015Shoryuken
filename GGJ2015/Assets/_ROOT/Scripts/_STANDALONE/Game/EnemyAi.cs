@@ -135,9 +135,9 @@ public class EnemyAi : MonoBehaviour {
 
 	private void PingPosition()
 	{
-		/*PingMonsterPosition ping = PingMonsterPosition.Create();
+		PingMonsterPosition ping = PingMonsterPosition.Create();
 		ping.Position = transform.position;
-		ping.Send();*/
+		ping.Send();
 	}
 
 

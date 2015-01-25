@@ -26,8 +26,6 @@ public class RadarManager : MonoBehaviour {
 
     private float _minScale = 1;
 
-    private const float offsetZ = -2f;
-
     private Dictionary<Type, GameObject> _interactableIconsPrefabs = new Dictionary<Type, GameObject>();
 
     private Canvas _canvas;
@@ -39,7 +37,7 @@ public class RadarManager : MonoBehaviour {
     /// </summary>
     Vector3 WorldToRadar( Vector3 world )
     {        
-        return new Vector3(world.x * worldToLocalScaleFactorX, world.z * worldToLocalScaleFactorZ, offsetZ);
+        return new Vector3(world.x * worldToLocalScaleFactorX, world.z * worldToLocalScaleFactorZ, 0);
     }
 
     void Awake()
@@ -64,7 +62,7 @@ public class RadarManager : MonoBehaviour {
     
     void Start () 
     {
-        SpawnRadarBar(offsetZ);
+        SpawnRadarBar();
 	}
 
     public void SetOpenedMenu(GameObject newMenu)
@@ -78,12 +76,12 @@ public class RadarManager : MonoBehaviour {
         m_openedMenu = newMenu;
     }
 
-    private void SpawnRadarBar(float offsetZ)
+    private void SpawnRadarBar()
     {
         m_playerPos = Vector2.zero;
         m_barGO = Instantiate(radarBarPrefab) as GameObject;
         m_barGO.transform.SetParent(_mapImage.transform, false);
-        m_barGO.transform.localPosition = new Vector3(0, 0, offsetZ);
+        m_barGO.transform.localPosition = new Vector3(0, 0, 0);
         m_barGO.transform.rotation = Quaternion.identity;
     }
 
@@ -115,9 +113,7 @@ public class RadarManager : MonoBehaviour {
 
     public void ShowPing(Vector3 worldPosition)
     {
-
         Vector3 pos = WorldToRadar(worldPosition);
-
 
         GameObject go = Kathulhu.PoolsManager.Instance.Spawn( "RadarBlip" );
         go.transform.SetParent( _mapImage.transform, false );

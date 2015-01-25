@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class RadarBlipManager : MonoBehaviour {
 
     private float appearsTime = 0.1f;
-    private float disappearsTime = 1.0f;
+    private float disappearsTime = 0.8f;
 
     public void Trigger()
     {
@@ -14,14 +15,16 @@ public class RadarBlipManager : MonoBehaviour {
     IEnumerator Appears()
     {
         yield return new WaitForSeconds(appearsTime);
-        GetComponent<MeshRenderer>().enabled = true;
+        
+        GetComponent<Image>().enabled = true;        
+
         StartCoroutine("Disappears");
     }
 
     IEnumerator Disappears()
     {
         yield return new WaitForSeconds(disappearsTime);
-        //GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Image>().enabled = false;        
         Kathulhu.PoolsManager.Instance.Deactivate( gameObject );
     }
 }
