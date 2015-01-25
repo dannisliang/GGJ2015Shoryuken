@@ -57,11 +57,12 @@ public class Alarm : MonoBehaviour {
 					enemy.target = transform;
 					enemy.state = EnemyState.Alerted;
 				}
-				/*else if(m_type == AlarmType.Repulsive)
+				else if(m_type == AlarmType.Repulsive)
 				{
 					enemy.target = enemy.spawnPoint.transform;
 					enemy.state = EnemyState.Flee;
-				}*/
+					enemy.RevengePoint = transform;
+				}
 			}
 		}
 	}
