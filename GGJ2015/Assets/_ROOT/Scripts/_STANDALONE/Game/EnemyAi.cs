@@ -165,6 +165,7 @@ public class EnemyAi : MonoBehaviour {
 		{
 			GameManager.Instance.RevivePlayer();
 			GameManager.Instance.PlayerInstance.GetComponentInChildren<SoundRifle>().munitions = 3;
+			state = EnemyState.Waiting;
 		}
 	}
 }
