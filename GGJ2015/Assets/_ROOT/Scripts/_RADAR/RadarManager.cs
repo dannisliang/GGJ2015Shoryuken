@@ -69,8 +69,15 @@ public class RadarManager : MonoBehaviour {
 
         //set Singleton reference
         Instance = this;
+
+        InvokeRepeating( "PlaySonarSound", 0.5f, 4f );
     }
-    
+
+    void PlaySonarSound()
+    {
+        MasterAudio.PlaySound( "SFX_UI_Sonar_Pulse" );
+    }
+
     void Start () 
     {
         SpawnRadarBar();
