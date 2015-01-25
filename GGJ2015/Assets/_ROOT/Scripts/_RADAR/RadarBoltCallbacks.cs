@@ -21,7 +21,12 @@ public class RadarBoltCallbacks : GlobalEventListener
 
     public override void OnEvent( RegisterInteractableObjectOnRadar evnt )
     {                
-        RadarManager.Instance.AddInteractable( evnt.Type, evnt.Position, evnt.Identifier );
+        RadarManager.Instance.AddInteractable( evnt.Type, evnt.Position, evnt.Identifier, evnt.Visible );
+    }
+
+    public override void OnEvent( SetInteractableIconVisibility evnt )
+    {
+        RadarManager.Instance.SetInteractableVisibility( evnt.InteractableIdentifier, evnt.Visible );
     }
 
     public override void OnEvent( PingMonsterPosition evnt )

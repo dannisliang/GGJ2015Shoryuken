@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections.Generic;
 using System;
+using Kathulhu;
 
 public class RadarManager : MonoBehaviour {
 
@@ -163,7 +164,7 @@ public class RadarManager : MonoBehaviour {
         _mapImage.transform.localScale = scale * Vector3.one;
     }
     
-    public void AddInteractable(string type, Vector3 worldPosition, string identifier)
+    public void AddInteractable(string type, Vector3 worldPosition, string identifier, bool visible = true)
     {
         Type t = Type.GetType( type );
         if ( _interactableIconsPrefabs.ContainsKey( t ) )
@@ -172,7 +173,25 @@ public class RadarManager : MonoBehaviour {
             icon.transform.SetParent( _mapImage.transform, false );
             icon.transform.localPosition = WorldToRadar( worldPosition );
             icon.transform.localScale = m_iconScale * Vector3.one;
-            icon.GetComponent<InteractableIcon>().Identifier = identifier;
+            InteractableIcon interIcon = icon.GetComponent<InteractableIcon>();
+            interIcon.Identifier = identifier;
+
+            interIcon.IsVisible = visible;            
+        }
+    }
+
+    public void SetInteractableVisibility(string identifier, bool visible)
+    {
+        foreach ( var item in GameController.Registry.ResolveAll<InteractableIcon>() )
+        {
+            if ( item == null )
+                continue;
+
+            if ( item.Identifier == identifier )
+            {
+                item.IsVisible = visible;
+                break;
+            }
         }
     }
     
