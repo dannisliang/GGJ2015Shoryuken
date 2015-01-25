@@ -71,7 +71,8 @@ public class RadarManager : MonoBehaviour {
         //Map interactable icons types
         _interactableIconsPrefabs.Add( Type.GetType( "Door" ), Resources.Load("DoorIcon") as GameObject );
         _interactableIconsPrefabs.Add( Type.GetType( "DoorHackPoint" ), Resources.Load( "DoorHackPointIcon" ) as GameObject );
-        _interactableIconsPrefabs.Add( Type.GetType( "LevierDoor" ), Resources.Load("LeverIcon") as GameObject);
+        _interactableIconsPrefabs.Add(Type.GetType("LevierDoor"), Resources.Load("LeverIcon") as GameObject);
+        _interactableIconsPrefabs.Add(Type.GetType("FireHackPoint"), Resources.Load("FireHackPointIcon") as GameObject);
 
         //set Singleton reference
         Instance = this;

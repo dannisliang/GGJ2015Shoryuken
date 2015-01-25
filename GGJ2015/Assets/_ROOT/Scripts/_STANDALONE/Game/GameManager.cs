@@ -35,9 +35,10 @@ public class GameManager : MonoBehaviour {
     }
 
 	// Update is called once per frame
-	void Update () {
-        if (Input.GetKey(KeyCode.Q))
-            RevivePlayer();
+    void Update()
+    {
+        Screen.lockCursor = true;
+        Screen.showCursor = false;
 	}
 
     public void SetCheckpoint(GameObject newCheckpoint)

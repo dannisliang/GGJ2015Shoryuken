@@ -8,7 +8,7 @@ public class JoinGameCmd : EventCommand {
     public override void Execute()
     {
         base.Execute();
-
+        Debug.Log("JoinGameCMD.Execute");
         BoltLauncher.StartClient();
         BoltNetwork.Connect( UdpKit.UdpEndPoint.Parse( ip + ":27000" ) );
     }

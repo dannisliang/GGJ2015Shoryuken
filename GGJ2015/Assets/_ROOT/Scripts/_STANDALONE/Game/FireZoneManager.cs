@@ -5,6 +5,7 @@ public class FireZoneManager : MonoBehaviour {
 
     public GameObject m_LockableDoor;
     public List<GameObject> FireZones;
+    public List<GameObject> Sprinklers;
     public GameObject LightGO;
 
 	// Use this for initialization
@@ -12,7 +13,7 @@ public class FireZoneManager : MonoBehaviour {
         TriggerFires(true);
 	}
 
-    void TriggerFires(bool isOn)
+    public void TriggerFires(bool isOn)
     {
         if (isOn)
         {
@@ -43,6 +44,19 @@ public class FireZoneManager : MonoBehaviour {
                     ps.Play();
                 else
                     ps.Stop();
+            }
+
+            //List<ParticleRenderer> lst = prs.OfType<ParticleRenderer>().ToList();
+        }
+
+        foreach (GameObject go in Sprinklers)
+        {
+            Debug.Log("GO");
+            List<ParticleSystem> pss = go.GetComponentsInChildren<ParticleSystem>().ToList<ParticleSystem>();
+            foreach (ParticleSystem ps in pss)
+            {
+                if (!isOn)
+                    ps.Play();
             }
 
             //List<ParticleRenderer> lst = prs.OfType<ParticleRenderer>().ToList();

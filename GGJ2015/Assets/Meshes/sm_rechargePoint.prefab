@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3396782}
   - 23: {fileID: 2396782}
   - 95: {fileID: 9596782}
+  - 114: {fileID: 11432732}
   m_Layer: 0
   m_Name: sm_rechargePoint
   m_TagString: Untagged
@@ -72,6 +73,18 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11432732
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd437ff53366b81458d7c19f87133b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isVisible: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

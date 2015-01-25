@@ -505,7 +505,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_SelectionColor: {r: .65882355, g: .807843149, b: 1, a: .752941191}
-  m_Text: 192.168.173.1
+  m_Text: 192.168.137.1
   m_CaretBlinkRate: 1.70000005
 --- !u!114 &1063318445
 MonoBehaviour:
@@ -815,7 +815,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 192.168.173.1
+  m_Text: 192.168.137.1
 --- !u!224 &2146399049
 RectTransform:
   m_ObjectHideFlags: 0

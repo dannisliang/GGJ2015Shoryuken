@@ -51,4 +51,25 @@ public class StandaloneBoltCallbacks : GlobalEventListener
         } 
     }
 
+    public override void OnEvent(ExtinguishFire evnt)
+    {
+        if (string.IsNullOrEmpty(evnt.Identifier))
+            return;
+
+        InteractableObject io = GameController.Registry.Resolve<InteractableObject>(evnt.Identifier);
+        ((FireHackPoint)io).StopFire();
+
+        /*foreach (var item in )
+        {
+            var door = item as Door;
+            if (door == null) continue;
+
+            if (door.HackPoint != null && door.HackPoint.Identifier == evnt.HackPointIdentifier)
+            {
+                door.Unlock();
+                break;
+            }
+        }*/
+    }
+
 }

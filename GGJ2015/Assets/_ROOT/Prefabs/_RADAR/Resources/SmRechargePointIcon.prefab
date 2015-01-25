@@ -27,9 +27,9 @@ GameObject:
   - 224: {fileID: 22447762}
   - 222: {fileID: 22247762}
   - 114: {fileID: 11447764}
-  - 114: {fileID: 11447762}
+  - 114: {fileID: 11461324}
   m_Layer: 5
-  m_Name: DoorHackPointIcon
+  m_Name: SmRechargePointIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,17 +97,6 @@ MonoBehaviour:
   m_Text: 'Hack
 
     Point'
---- !u!114 &11447762
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 147762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fee7e84c449ff32488ee43f947fe82a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11447764
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,7 +110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: fda09ef8add55df4c99e8b83f8360d5f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c905515dc24a1146a3f1cdfe1b3a5d8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -171,6 +160,17 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11461324
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e1eac5f1f55db84c9d08074b372c0c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &22247760
 CanvasRenderer:
   m_ObjectHideFlags: 1
