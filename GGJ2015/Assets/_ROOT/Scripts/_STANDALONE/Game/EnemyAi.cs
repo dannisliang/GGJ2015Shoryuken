@@ -63,13 +63,6 @@ public class EnemyAi : MonoBehaviour {
 			m_path.target = target;
 		}
 
-		if(m_path.canMove)
-			GetComponentInChildren<Animation>().Play("Take 001");
-		else{
-			GetComponentInChildren<Animation>().Stop();
-			rigidbody.velocity = Vector3.zero;
-		}
-
 		switch(state)
 		{
 			case EnemyState.Flee:
@@ -167,9 +160,17 @@ public class EnemyAi : MonoBehaviour {
 				m_path.speed = EnemyAlertedSpeed;
 				if(m_path.TargetReached && Vector3.Distance(transform.position, target.position) < 5){
 					state = EnemyState.Waiting;
+					Path.canMove = false;
 				}
 			}
 			break;
+		}
+
+		if(m_path.canMove)
+			GetComponentInChildren<Animation>().Play("Take 001");
+		else{
+			GetComponentInChildren<Animation>().Stop();
+			rigidbody.velocity = Vector3.zero;
 		}
 	}
 
