@@ -3,10 +3,10 @@ using System.Collections;
 
 public class CameraZoomPinch : MonoBehaviour
 {
-    public int speed = 3;
-    public float minPinchSpeed = 8.0F;
-    public float varianceInDistances = 2.0F;
-    public float minDistDelta = 0.5f;
+    private float speed = 0.1f;
+    private float minPinchSpeed = 100.0F;
+    private float varianceInDistances = 0.0f;
+    private float minDistDelta = 1.0f;
     private float touchDelta = 0.0F;
     
     private Vector2 prevDist = new Vector2(0, 0);
@@ -33,13 +33,17 @@ public class CameraZoomPinch : MonoBehaviour
             touchDelta = curDist.magnitude - prevDist.magnitude;
             speedTouch0 = Input.GetTouch(0).deltaPosition.magnitude / Input.GetTouch(0).deltaTime;
             speedTouch1 = Input.GetTouch(1).deltaPosition.magnitude / Input.GetTouch(1).deltaTime;
-            if (curDist.magnitude < minDistDelta)
-                return;
 
-            if ((touchDelta + varianceInDistances <= 1) && (speedTouch0 > minPinchSpeed) && (speedTouch1 > minPinchSpeed))
+            
+            if (Mathf.Abs(touchDelta) < minDistDelta)
+                return;
+            
+            Debug.Log("curDist : " + curDist + " - touchDelta : " + touchDelta + "speedTouch : " + speedTouch0);
+
+            if ((touchDelta + varianceInDistances <= 0) && (speedTouch0 > minPinchSpeed) && (speedTouch1 > minPinchSpeed))
                 RadarManager.Instance.ZoomMap( speed );
 
-            if ((touchDelta + varianceInDistances > 1) && (speedTouch0 > minPinchSpeed) && (speedTouch1 > minPinchSpeed))
+            if ((touchDelta + varianceInDistances > 0) && (speedTouch0 > minPinchSpeed) && (speedTouch1 > minPinchSpeed))
                 RadarManager.Instance.ZoomMap( -speed );
 
         }
