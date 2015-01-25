@@ -24,6 +24,8 @@ public class HackingPanelGameCommand : GameCommand {
         base.OnComplete();
 
         Debug.Log( "Hacking completed!" );
+        HackingPanel hPnl = UIManager.Current.Panels["HackingPanel"] as HackingPanel;
+        hPnl.Deactivate();
     }
 
     /// <summary>
