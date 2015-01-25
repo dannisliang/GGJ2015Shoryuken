@@ -164,6 +164,7 @@ public class EnemyAi : MonoBehaviour {
 		if(other.transform.tag == "Player")
 		{
 			GameManager.Instance.RevivePlayer();
+			GameManager.Instance.PlayerInstance.GetComponentInChildren<SoundRifle>().munitions = 3;
 		}
 	}
 }
