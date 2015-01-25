@@ -2,19 +2,16 @@
 using System.Collections;
 using Kathulhu;
 
-public class DoorHackPointIcon : InteractableIcon
+public class LeverIcon : InteractableIcon
 {
-
-
     public override void OnPointerClick( UnityEngine.EventSystems.PointerEventData eventData )
     {
-        Debug.Log("Click");
-        HackingPanelGameCommand cmd = new HackingPanelGameCommand();
-        cmd.OnHackingResult += HackResult;
-        GameController.Execute( cmd );        
+        //HackingPanelGameCommand cmd = new HackingPanelGameCommand();
+        //cmd.OnHackingResult += HackResult;
+        //GameController.Execute( cmd );        
     }
 
-    void HackResult(HackingPanelGameCommand cmd)
+    /*void HackResult(HackingPanelGameCommand cmd)
     {
         if ( cmd.State == CommandState.Completed )
         {
@@ -22,6 +19,6 @@ public class DoorHackPointIcon : InteractableIcon
             unlock.HackPointIdentifier = Identifier;
             unlock.Send();
         }
-    }
+    }*/
 
 }

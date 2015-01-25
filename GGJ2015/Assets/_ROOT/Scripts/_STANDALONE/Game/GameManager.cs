@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour {
 
     public void SetCheckpoint(GameObject newCheckpoint)
     {
-        Debug.Log("SetPointCheck");
         m_lastCheckpoint = newCheckpoint;
     }
 
