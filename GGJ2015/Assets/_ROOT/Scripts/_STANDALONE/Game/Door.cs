@@ -5,8 +5,7 @@ public class Door : InteractableObject {
     
     public bool Locked = true;
 
-    [SerializeField]
-    private DoorHackPoint _hackPoint;
+    public DoorHackPoint HackPoint { get { return _hackPoint; } }
 
 	public Vector3 openPosition;
 	public Vector3 closePosition;
@@ -14,10 +13,14 @@ public class Door : InteractableObject {
 
 	public Renderer doorRenderer;
 
+    [SerializeField]
+    private DoorHackPoint _hackPoint;
+
     public void Unlock()
     {
         if ( Locked == true )
         {
+            Debug.Log( "Door " + Identifier + " unlocked!" );
             Locked = false;
 
             //outline door
