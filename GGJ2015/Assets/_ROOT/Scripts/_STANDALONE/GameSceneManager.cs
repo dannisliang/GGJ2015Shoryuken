@@ -16,6 +16,9 @@ public class GameSceneManager : SceneManager {
         
         foreach ( var item in GameController.Registry.ResolveAll<InteractableObject>() )
         {
+            if (item == null)
+                continue;
+
             RegisterInteractableObjectOnRadar registerEvt = RegisterInteractableObjectOnRadar.Create();
             registerEvt.Identifier = item.Identifier;
             registerEvt.Type = item.GetType().ToString();
