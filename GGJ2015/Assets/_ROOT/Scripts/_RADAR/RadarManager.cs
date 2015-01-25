@@ -21,6 +21,8 @@ public class RadarManager : MonoBehaviour {
     private float worldToLocalScaleOffsetX = 33f;  // + ->
     private float worldToLocalScaleOffsetZ = -49f; // + /\
 
+    private float m_iconScale = 2.0f;
+
     private bool m_isScanning = true;
 
     private GameObject m_barGO;
@@ -63,6 +65,7 @@ public class RadarManager : MonoBehaviour {
         //Map interactable icons types
         _interactableIconsPrefabs.Add( Type.GetType( "Door" ), Resources.Load("DoorIcon") as GameObject );
         _interactableIconsPrefabs.Add( Type.GetType( "DoorHackPoint" ), Resources.Load( "DoorHackPointIcon" ) as GameObject );
+        _interactableIconsPrefabs.Add( Type.GetType( "Lever"), Resources.Load("LeverIcon") as GameObject);
 
         //set Singleton reference
         Instance = this;
@@ -162,7 +165,7 @@ public class RadarManager : MonoBehaviour {
             GameObject icon = Instantiate( _interactableIconsPrefabs[t] ) as GameObject;
             icon.transform.SetParent( _mapImage.transform, false );
             icon.transform.localPosition = WorldToRadar( worldPosition );
-
+            icon.transform.localScale = m_iconScale * Vector3.one;
             icon.GetComponent<InteractableIcon>().Identifier = identifier;
         }
     }
