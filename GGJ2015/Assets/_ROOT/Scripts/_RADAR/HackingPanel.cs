@@ -4,27 +4,28 @@ using System.Collections;
 using System.Collections.Generic;
 using Kathulhu;
 
+public enum HackingSymbols
+{
+    symbolun,
+    symboldeux,
+    symboltrois,
+    symbolquatre,
+    symbolcinq,
+    symbolsix,
+    symbolsept,
+    symbolhuit,
+    symbolneuf,
+    symboldix
+}  
+
 public class HackingPanel : UIPanel {
 
     public HackingPanelGameCommand command;
 
     [SerializeField]
-    private Text[] symbolTexts;
+    private HackingSymbolButton[] symbolButtons;
 
-    private CanvasGroup _canvasGroup;
-
-    private enum HackingSymbols {
-        un,
-        deux,
-        trois,
-        quatre,
-        cinq,
-        six,
-        sept,
-        huit,
-        neuf,
-        dix
-    }    
+    private CanvasGroup _canvasGroup;      
 
     private List<HackingSymbols>[] _symbols = new List<HackingSymbols>[] 
                     { 
@@ -43,6 +44,10 @@ public class HackingPanel : UIPanel {
     void OnEnable()
     {
         _canvasGroup.interactable = true;
+
+        foreach ( var item in symbolButtons )
+            item.CheckMark.enabled = false;
+
         ShuffleSymbols();
     }
 
@@ -67,6 +72,7 @@ public class HackingPanel : UIPanel {
             list[n] = value;
         }
 
+        //add invalid symbols to lists
         while ( list.Count > 1 )
         {
             if ( _symbols[0].Count < 4 )
@@ -79,16 +85,24 @@ public class HackingPanel : UIPanel {
             list.RemoveAt( 0 );
         }
 
+        //insert valid symbol at random position
         foreach ( var aSymbolList in _symbols )
-        {
-            string s = "symbols : ";
-            aSymbolList.Insert( Random.Range( 0, aSymbolList.Count ), list[0] );
-            foreach ( var item in aSymbolList )
-                s += item.ToString() + " ";
+            aSymbolList.Insert( Random.Range( 0, aSymbolList.Count ), list[0] );            
 
-            Debug.Log( s );
+        //hack to make sure the default answer isn't the correct answer
+        if ( symbolButtons[0].Symbol == symbolButtons[1].Symbol && symbolButtons[1].Symbol == symbolButtons[2].Symbol )
+        {
+            _symbols[1].Add( _symbols[1][0] );
+            _symbols[1].RemoveAt( 0 );
+
+            _symbols[2].Add( _symbols[2][0] );
+            _symbols[2].RemoveAt( 0 );
         }
 
+        //init buttons
+        symbolButtons[0].Symbol = _symbols[0][0];
+        symbolButtons[1].Symbol = _symbols[1][0];
+        symbolButtons[2].Symbol = _symbols[2][0];
 
     }
 
@@ -101,26 +115,31 @@ public class HackingPanel : UIPanel {
         }
     }
 
-    public void OnSymbolButtonClick( Text txt )
+    public void OnSymbolButtonClick( HackingSymbolButton btn )
     {
-        Debug.Log("Click on " + txt.gameObject);
+        if ( btn.CheckMark.enabled )
+            return;
+
+        //toggle button's symbol
         for ( int i = 0; i < 3; i++ )
         {
-            if ( txt == symbolTexts[i] )
+            if ( btn == symbolButtons[i] )
             {
                 _symbols[i].Add( _symbols[i][0] );
                 _symbols[i].RemoveAt( 0 );
-                txt.text = _symbols[i][0].ToString();
+                btn.Symbol = _symbols[i][0];
                 break;
             }
         }
 
-        if ( symbolTexts[0].text == symbolTexts[1].text && symbolTexts[1].text == symbolTexts[2].text )
+        //Check if correct answer
+        if ( symbolButtons[0].Symbol == symbolButtons[1].Symbol && symbolButtons[1].Symbol == symbolButtons[2].Symbol )
         {
+            foreach ( var item in symbolButtons )
+                item.CheckMark.enabled = true;
+
             if ( command != null )
-            {
                 command.CompleteHacking();
-            }
         }
     }
 }
