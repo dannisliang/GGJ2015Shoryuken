@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class SoundRifle : MonoBehaviour {
 
@@ -10,10 +9,8 @@ public class SoundRifle : MonoBehaviour {
 	public bool inCoolDown = false;
 
 
-	//public TextMesh munitionsText;
-	//public TextMesh coolDownText;
-	public List<Material> battery = new List<Material>();
-	public GameObject currentBattery;
+	public TextMesh munitionsText;
+	public TextMesh coolDownText;
 
 	public GameObject bulletPrefab;
 	public GameObject launchPosition;
@@ -29,8 +26,7 @@ public class SoundRifle : MonoBehaviour {
 	int count = 5;
 	// Update is called once per frame
 	void Update () {
-		currentBattery.renderer.material = battery[munitions];
-		//munitionsText.text = munitions.ToString();
+		munitionsText.text = munitions.ToString();
 
 		if((Input.GetMouseButton(0) && munitions <= 0 && !clicked))
 		{
@@ -43,7 +39,7 @@ public class SoundRifle : MonoBehaviour {
 			if(munitions > 0){
 				MasterAudio.PlaySound3DAtTransformAndForget("SFX_Gun_Shot", transform);
 				munitions--;
-				//coolDownText.text = "5";
+				coolDownText.text = "5";
 				collider.enabled = true;
 				inCoolDown = true;
 				//Animations
@@ -69,7 +65,7 @@ public class SoundRifle : MonoBehaviour {
 			if(time > 1){
 				time = 0;
 				count--;
-				//coolDownText.text = count.ToString();
+				coolDownText.text = count.ToString();
 				collider.enabled = false;
 				if(count <= 0){
 					inCoolDown = false;

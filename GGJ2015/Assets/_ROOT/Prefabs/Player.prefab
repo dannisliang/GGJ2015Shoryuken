@@ -1,22 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &151292
-GameObject:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 451292}
-  - 23: {fileID: 2351292}
-  - 33: {fileID: 3351292}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &174858
 GameObject:
   m_ObjectHideFlags: 1
@@ -172,7 +155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &184460
 GameObject:
   m_ObjectHideFlags: 1
@@ -189,7 +172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &184462
 GameObject:
   m_ObjectHideFlags: 1
@@ -206,7 +189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &195004
 GameObject:
   m_ObjectHideFlags: 1
@@ -222,18 +205,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &451292
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151292}
-  m_LocalRotation: {x: -.240399286, y: .228844613, z: .664617598, w: .669418991}
-  m_LocalPosition: {x: .0259999912, y: .347000003, z: -.135000005}
-  m_LocalScale: {x: .150000006, y: .150000006, z: .150000006}
-  m_Children: []
-  m_Father: {fileID: 474858}
-  m_RootOrder: 6
 --- !u!4 &474858
 Transform:
   m_ObjectHideFlags: 1
@@ -250,7 +221,6 @@ Transform:
   - {fileID: 484458}
   - {fileID: 484460}
   - {fileID: 484462}
-  - {fileID: 451292}
   m_Father: {fileID: 475340}
   m_RootOrder: 0
 --- !u!4 &474860
@@ -422,26 +392,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
---- !u!23 &2351292
-Renderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151292}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 2100000, guid: 41b86dc751b36eb4a921d27c27b0b933, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
 --- !u!23 &2375342
 Renderer:
   m_ObjectHideFlags: 1
@@ -522,13 +472,6 @@ Renderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3351292
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151292}
-  m_Mesh: {fileID: 4300000, guid: cd78463a3616d4f02ba9b40aafb2aaf1, type: 3}
 --- !u!33 &3375342
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -713,8 +656,8 @@ MonoBehaviour:
   munitions: 3
   coolDown: 5
   inCoolDown: 0
-  battery: []
-  currentBattery: {fileID: 0}
+  munitionsText: {fileID: 10284458}
+  coolDownText: {fileID: 10284460}
   bulletPrefab: {fileID: 127962, guid: c382c8c8d9501314f98af35f821b28d4, type: 2}
   launchPosition: {fileID: 174858}
 --- !u!114 &11475336
