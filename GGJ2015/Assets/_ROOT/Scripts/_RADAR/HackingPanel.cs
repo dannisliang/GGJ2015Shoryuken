@@ -11,6 +11,8 @@ public class HackingPanel : UIPanel {
     [SerializeField]
     private Text[] symbolTexts;
 
+    private CanvasGroup _canvasGroup;
+
     private enum HackingSymbols {
         un,
         deux,
@@ -31,8 +33,16 @@ public class HackingPanel : UIPanel {
                         new List<HackingSymbols>() 
                     };
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _canvasGroup = GetComponent<CanvasGroup>();
+    }
+
     void OnEnable()
     {
+        _canvasGroup.interactable = true;
         ShuffleSymbols();
     }
 

@@ -15,7 +15,7 @@ public class RadarGameUIManager : UIManager {
         if ( Input.GetKeyDown( KeyCode.Space ) )
         {
             HackingPanelGameCommand cmd = new HackingPanelGameCommand();
-            cmd.Execute();
+            GameController.Execute( cmd );
         }
     }
 }

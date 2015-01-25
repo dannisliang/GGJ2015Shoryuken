@@ -931,6 +931,7 @@ GameObject:
   - 222: {fileID: 855205108}
   - 114: {fileID: 855205107}
   - 114: {fileID: 855205109}
+  - 225: {fileID: 855205110}
   m_Layer: 5
   m_Name: HackingPanel
   m_TagString: Untagged
@@ -1001,6 +1002,17 @@ MonoBehaviour:
   - {fileID: 977227878}
   - {fileID: 504983645}
   - {fileID: 1342555150}
+--- !u!225 &855205110
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 855205105}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &888127885
 GameObject:
   m_ObjectHideFlags: 0
@@ -1082,7 +1094,7 @@ Canvas:
   m_GameObject: {fileID: 888127885}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 309679526}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -1276,7 +1288,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
