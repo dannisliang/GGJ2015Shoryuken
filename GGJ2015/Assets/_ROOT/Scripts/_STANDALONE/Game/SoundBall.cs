@@ -24,6 +24,8 @@ public class SoundBall : MonoBehaviour {
 			GameObject go = new GameObject();
 			go.transform.position = Player.transform.position;
 			enemy.RevengePoint = go.transform;
+			int rand = Random.Range(1,5);
+			MasterAudio.PlaySound3DFollowTransformAndForget( "SFX_Enemy_Fear_0"+rand, other.transform );
 		}
 	}
 }

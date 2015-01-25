@@ -203,6 +203,8 @@ public class EnemyAi : MonoBehaviour {
 	{
 		if(other.transform.tag == "Player")
 		{
+			int rand = Random.Range(1,5);
+			MasterAudio.PlaySound3DFollowTransformAndForget( "SFX_Enemy_Attack_0"+rand );
 			GameManager.Instance.RevivePlayer();
 			GameManager.Instance.PlayerInstance.GetComponentInChildren<SoundRifle>().munitions = 3;
 			state = EnemyState.Waiting;

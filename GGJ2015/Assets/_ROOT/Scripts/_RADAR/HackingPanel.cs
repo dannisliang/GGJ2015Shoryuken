@@ -6,16 +6,16 @@ using Kathulhu;
 
 public enum HackingSymbols
 {
-    symbolun,
-    symboldeux,
-    symboltrois,
-    symbolquatre,
-    symbolcinq,
-    symbolsix,
-    symbolsept,
-    symbolhuit,
-    symbolneuf,
-    symboldix
+    t_radar_symbole_1,
+    t_radar_symbole_2,
+    t_radar_symbole_3,
+    t_radar_symbole_4,
+    t_radar_symbole_5,
+    t_radar_symbole_6,
+    t_radar_symbole_7,
+    t_radar_symbole_8,
+    t_radar_symbole_9,
+    t_radar_symbole_10
 }  
 
 public class HackingPanel : UIPanel {

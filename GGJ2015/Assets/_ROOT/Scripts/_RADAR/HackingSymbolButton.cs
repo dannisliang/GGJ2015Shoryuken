@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HackingSymbolButton : MonoBehaviour {
 
@@ -26,9 +27,8 @@ public class HackingSymbolButton : MonoBehaviour {
         set
         {
             _current = value;
-            //_symbolImage.sprite = symbol
-
-            _text.text = _current.ToString();
+            Texture2D t = Resources.Load( _current.ToString() ) as Texture2D;
+            _symbolImage.sprite = Sprite.Create( t, new Rect( 0, 0, t.width, t.height ), new Vector2( 0.5f, 0.5f ) );
         }
     }
 }

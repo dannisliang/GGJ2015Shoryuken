@@ -26,6 +26,8 @@ public class Door : InteractableObject {
         {
             Debug.Log( "Door " + Identifier + " unlocked!" );
             Locked = false;
+			MasterAudio.PlaySound3DAtTransform( "SFX_World_Hack_Access_Granted", transform);
+
 
             //outline door
 
@@ -48,6 +50,8 @@ public class Door : InteractableObject {
 
 		if(opening && !opened)
 		{
+			MasterAudio.PauseAllSoundsOfTransform(transform);
+			MasterAudio.PlaySound3DAtTransform( "SFX_World_Door_Open", transform);
 			//Animation
 			animationDoor["Take 001"].time = 0;
 			animationDoor["Take 001"].speed = 3;
@@ -55,9 +59,12 @@ public class Door : InteractableObject {
 			doorCollider.enabled = false;
 			opened = true;
 			closeed = false;
+
 		}
 		else if(!opening && !closeed)
 		{
+			MasterAudio.PauseAllSoundsOfTransform(transform);
+			MasterAudio.PlaySound3DAtTransform( "SFX_World_Door_Close", transform);
 			animationDoor["Take 001"].time = animationDoor["Take 001"].length;
 			animationDoor["Take 001"].speed = -3;
 			animationDoor.Play("Take 001");
