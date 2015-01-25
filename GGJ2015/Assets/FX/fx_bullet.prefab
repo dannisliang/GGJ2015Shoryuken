@@ -406,11 +406,6 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: 1
-          value: 1
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
       minCurve:
@@ -429,15 +424,15 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
       minMaxState: 0
-    cnt0: 1
-    cnt1: 2
-    cnt2: 3
-    cnt3: 4
+    cnt0: 4
+    cnt1: 3
+    cnt2: 2
+    cnt3: 1
     time0: 0
-    time1: .100000001
-    time2: .200000003
-    time3: .449999988
-    m_BurstCount: 3
+    time1: .330000013
+    time2: .660000026
+    time3: 1
+    m_BurstCount: 4
   SizeModule:
     enabled: 1
     curve:
