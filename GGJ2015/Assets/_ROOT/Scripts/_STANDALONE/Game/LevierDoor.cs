@@ -19,6 +19,8 @@ public class LevierDoor : MonoBehaviour {
 			if(Input.GetKeyDown(KeyCode.E))
 			{
 				door.Locked = !door.Locked;
+				if(!door.Locked)
+					MasterAudio.PlaySound3DAtTransform( "SFX_World_Hack_Access_Granted", transform);
 			}
 		}
 	}

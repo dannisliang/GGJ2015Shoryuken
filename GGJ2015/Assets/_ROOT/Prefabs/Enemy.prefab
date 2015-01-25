@@ -692,7 +692,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
-  m_Height: 1
+  m_Height: 1.29999995
   m_Direction: 2
   m_Center: {x: 0, y: .5, z: -.180000007}
 --- !u!137 &13724072

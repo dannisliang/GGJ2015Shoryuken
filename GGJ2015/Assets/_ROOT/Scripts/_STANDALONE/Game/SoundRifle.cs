@@ -27,10 +27,17 @@ public class SoundRifle : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		munitionsText.text = munitions.ToString();
+
+		if((Input.GetMouseButton(0) && munitions <= 0 && !clicked))
+		{
+			MasterAudio.PlaySound3DAtTransformAndForget( "SFX_Gun_Unready", transform);
+		}
+
 		if(Input.GetMouseButton(0) && !inCoolDown && !clicked)
 		{
 			clicked = true;
 			if(munitions > 0){
+				MasterAudio.PlaySound3DAtTransformAndForget("SFX_Gun_Shot", transform);
 				munitions--;
 				coolDownText.text = "5";
 				collider.enabled = true;
@@ -43,6 +50,14 @@ public class SoundRifle : MonoBehaviour {
 				bullet.GetComponent<fx_bullet>().Flash(1);
 			}
 		}
+
+		if(Input.GetMouseButton(0) && inCoolDown && !clicked)
+		{
+			MasterAudio.PlaySound3DAtTransformAndForget( "SFX_Gun_Unready", transform);
+		}
+
+
+
 
 		if(inCoolDown)
 		{
