@@ -19,7 +19,6 @@ public class StandaloneBoltCallbacks : GlobalEventListener
 
     public override void Connected( BoltConnection connection )
     {
-        //GameController.Registry.Register<BoltConnection>( connection, "Client" );
         if (GameController.ActiveSceneManager.SceneName == "MainMenu")
         {
             var evt = EnterTheGameScene.Create();

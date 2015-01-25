@@ -20,9 +20,7 @@ public class RadarBoltCallbacks : GlobalEventListener
     }
 
     public override void OnEvent( RegisterInteractableObjectOnRadar evnt )
-    {
-        base.OnEvent( evnt );
-        
+    {                
         RadarManager.Instance.AddInteractable( evnt.Type, evnt.Position, evnt.Identifier );
     }
 
