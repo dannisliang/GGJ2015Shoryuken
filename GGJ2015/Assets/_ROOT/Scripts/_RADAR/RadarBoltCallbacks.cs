@@ -27,6 +27,9 @@ public class RadarBoltCallbacks : GlobalEventListener
     public override void OnEvent( SetInteractableIconVisibility evnt )
     {
         RadarManager.Instance.SetInteractableVisibility( evnt.InteractableIdentifier, evnt.Visible );
+
+        if ( evnt.DottedLineIndice >= 0 )
+            DottedLines.Instance.SetVisibility( evnt.DottedLineIndice, evnt.Visible );
     }
 
     public override void OnEvent( PingMonsterPosition evnt )
