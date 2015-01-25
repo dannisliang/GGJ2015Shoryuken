@@ -6,7 +6,7 @@ public class SoundPlayer : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
-		MasterAudio.PlaySound3DFollowTransform( "SFX_Amb_SpaceShip_Rumble", transform);
+		MasterAudio.PlaySound3DFollowTransform( "SFX_Amb_SpaceShip_V2", transform);
 	}
 
 	Vector3 oldPosition = Vector3.zero;
