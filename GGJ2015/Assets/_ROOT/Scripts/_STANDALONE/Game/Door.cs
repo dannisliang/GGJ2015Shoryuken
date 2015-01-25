@@ -32,12 +32,15 @@ public class Door : InteractableObject {
 	float time = 0;
 	public void Update()
 	{
-		if(Locked)
-		{
-			doorRenderer.material.SetColor("_OutlineColor", Color.red);
-		}
-		else
-			doorRenderer.material.SetColor("_OutlineColor", Color.green);
+        if ( doorRenderer != null )
+        {
+            if ( Locked )
+            {
+                doorRenderer.material.SetColor( "_OutlineColor", Color.red );
+            }
+            else
+                doorRenderer.material.SetColor( "_OutlineColor", Color.green );
+        }
 
 		if(opening)
 		{

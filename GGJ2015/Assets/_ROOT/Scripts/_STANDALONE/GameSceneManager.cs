@@ -12,7 +12,7 @@ public class GameSceneManager : SceneManager {
         evt.message = "Scene setup...";
         EventDispatcher.Event( evt );
 
-        yield return null;
+        yield return new WaitForSeconds( 1 ); ;
         
         foreach ( var item in GameController.Registry.ResolveAll<InteractableObject>() )
         {
