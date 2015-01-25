@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 470550}
   - 114: {fileID: 11470550}
   m_Layer: 0
-  m_Name: DoorHack
+  m_Name: DoorHackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

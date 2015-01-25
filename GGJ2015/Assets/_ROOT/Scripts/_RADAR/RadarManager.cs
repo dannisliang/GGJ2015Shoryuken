@@ -65,7 +65,7 @@ public class RadarManager : MonoBehaviour {
         //Map interactable icons types
         _interactableIconsPrefabs.Add( Type.GetType( "Door" ), Resources.Load("DoorIcon") as GameObject );
         _interactableIconsPrefabs.Add( Type.GetType( "DoorHackPoint" ), Resources.Load( "DoorHackPointIcon" ) as GameObject );
-        _interactableIconsPrefabs.Add( Type.GetType( "Lever"), Resources.Load("LeverIcon") as GameObject);
+        _interactableIconsPrefabs.Add( Type.GetType( "LevierDoor" ), Resources.Load("LeverIcon") as GameObject);
 
         //set Singleton reference
         Instance = this;
@@ -136,7 +136,6 @@ public class RadarManager : MonoBehaviour {
 
         GameObject go = Kathulhu.PoolsManager.Instance.Spawn( "RadarBlip" );
         go.transform.SetParent( _mapImage.transform, false );
-        Debug.Log(worldPosition +  " to "  + pos);
         go.transform.localPosition = pos;
     }
 
