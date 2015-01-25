@@ -21,6 +21,7 @@ public class RadarBlipManager : MonoBehaviour {
     IEnumerator Disappears()
     {
         yield return new WaitForSeconds(disappearsTime);
-        GetComponent<MeshRenderer>().enabled = false;
+        //GetComponent<MeshRenderer>().enabled = false;
+        Kathulhu.PoolsManager.Instance.Deactivate( gameObject );
     }
 }

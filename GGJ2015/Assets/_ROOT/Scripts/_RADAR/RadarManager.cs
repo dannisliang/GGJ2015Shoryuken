@@ -12,8 +12,7 @@ public class RadarManager : MonoBehaviour {
     private Image _mapImage;//reference to the Image component that displays the map, set in the inspector
 
     //Prefabs    
-    public GameObject radarBarPrefab;
-    public GameObject radarBlipPrefab;
+    public GameObject radarBarPrefab;    
 
     //Factors for world to radar position conversions
     public float worldToLocalScaleFactorX = 1;
@@ -22,8 +21,7 @@ public class RadarManager : MonoBehaviour {
     private bool m_isScanning = true;
 
     private GameObject m_barGO;
-    private Vector2 m_playerPos;
-    private List<GameObject> m_targets = new List<GameObject>();
+    private Vector2 m_playerPos;    
     private GameObject m_openedMenu;
 
     private float _minScale = 1;
@@ -120,11 +118,10 @@ public class RadarManager : MonoBehaviour {
 
         Vector3 pos = WorldToRadar(worldPosition);
 
-        GameObject go = Instantiate( radarBlipPrefab ) as GameObject;
+
+        GameObject go = Kathulhu.PoolsManager.Instance.Spawn( "RadarBlip" );
         go.transform.SetParent( _mapImage.transform, false );
         go.transform.localPosition = pos;
-        m_targets.Add( go );
-
     }
 
     public void MoveMap( Vector2 delta )
