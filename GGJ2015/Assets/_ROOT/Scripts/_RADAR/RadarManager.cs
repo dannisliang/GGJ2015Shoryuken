@@ -25,12 +25,9 @@ public class RadarManager : MonoBehaviour {
     private GameObject m_openedMenu;
 
     private float _minScale = 1;
-<<<<<<< HEAD
+
     private float _maxScale = 3;
     private float _scaleMaxRatio = 3;
-    private const float offsetZ = -2f;
-=======
->>>>>>> 55c22c8158891c2ede619aa11254f0b958ef9956
 
     private Dictionary<Type, GameObject> _interactableIconsPrefabs = new Dictionary<Type, GameObject>();
 
