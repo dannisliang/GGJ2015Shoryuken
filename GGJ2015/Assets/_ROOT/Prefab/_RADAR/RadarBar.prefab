@@ -44,9 +44,9 @@ BoxCollider2D:
   m_GameObject: {fileID: 178934}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Size: {x: 15, y: 750}
-  m_Center: {x: -750, y: 375}
+  m_Center: {x: 0, y: 375}
 --- !u!114 &11453452
 MonoBehaviour:
   m_ObjectHideFlags: 1
