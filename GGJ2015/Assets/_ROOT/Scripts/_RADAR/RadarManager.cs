@@ -12,8 +12,11 @@ public class RadarManager : MonoBehaviour {
     [SerializeField]
     private Image _mapImage;//reference to the Image component that displays the map, set in the inspector
 
-    //Prefabs    
-    public GameObject radarBarPrefab;    
+    //Prefabs   
+    [SerializeField]
+    private GameObject radarBarPrefab;
+    [SerializeField]
+    private GameObject playerMarkerPrefab;    
 
     //Factors for world to radar position conversions
     private float worldToLocalScaleFactorX = 10f;
@@ -40,6 +43,8 @@ public class RadarManager : MonoBehaviour {
     private Canvas _canvas;
     private ScrollRect _scrollRect;
     private CanvasScaler _canvasScaler;
+
+    private GameObject _playerMarker;
 
     /// <summary>
     /// Converts a world position to a local position relative to the Map Image
@@ -81,7 +86,9 @@ public class RadarManager : MonoBehaviour {
 
     void Start () 
     {
-        SpawnRadarBar();
+        SpawnPlayerMarker();
+
+        SpawnRadarBar();        
 	}
 
     public void SetOpenedMenu(GameObject newMenu)
@@ -102,6 +109,15 @@ public class RadarManager : MonoBehaviour {
         m_barGO.transform.SetParent(_mapImage.transform, false);
         m_barGO.transform.localPosition = new Vector3(0, 0, 0);
         m_barGO.transform.rotation = Quaternion.identity;
+    }
+
+    private void SpawnPlayerMarker()
+    {
+        _playerMarker = Instantiate( playerMarkerPrefab ) as GameObject;
+        _playerMarker.transform.SetParent( _mapImage.transform, false );
+        _playerMarker.transform.localPosition = new Vector3( 0, 0, 0 );
+
+        _playerMarker.SetActive( false );
     }
 
     public void ToggleScan(bool isScanning)
@@ -145,6 +161,18 @@ public class RadarManager : MonoBehaviour {
         GameObject go = Kathulhu.PoolsManager.Instance.Spawn( "RadarBlip" );
         go.transform.SetParent( _mapImage.transform, false );
         go.transform.localPosition = pos;
+    }
+
+    public void SetPlayerMarkerPosition( Vector3 worldPosition )
+    {
+        if ( _playerMarker == null )
+            return;
+
+        _playerMarker.SetActive( true );
+
+        Vector3 pos = WorldToRadar( worldPosition );
+
+        _playerMarker.transform.localPosition = pos;
     }
 
     public void MoveMap( Vector2 delta )

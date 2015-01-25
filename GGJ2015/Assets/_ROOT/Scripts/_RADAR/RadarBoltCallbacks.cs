@@ -33,5 +33,10 @@ public class RadarBoltCallbacks : GlobalEventListener
     {
         RadarManager.Instance.ShowPing( evnt.Position );
     }
+
+    public override void OnEvent( SetPlayerPosition evnt )
+    {
+        RadarManager.Instance.SetPlayerMarkerPosition( evnt.WorldPosition );
+    }
     
 }
