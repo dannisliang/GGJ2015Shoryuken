@@ -186,7 +186,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 8abceef994d369f4e8194530aa4fef0b, type: 2}
+  - {fileID: 2100000, guid: 1a09cb7384dcfcd4dbe30dec0a87b85d, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -243,6 +243,7 @@ MonoBehaviour:
   openPosition: {x: -48, y: 12, z: .400000006}
   closePosition: {x: -48, y: 6, z: .400000006}
   doorRenderer: {fileID: 13763462}
+  _hackPoint: {fileID: 0}
 --- !u!136 &13638498
 CapsuleCollider:
   m_ObjectHideFlags: 1
