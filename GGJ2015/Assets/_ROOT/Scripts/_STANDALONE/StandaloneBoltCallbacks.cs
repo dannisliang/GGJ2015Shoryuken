@@ -38,8 +38,11 @@ public class StandaloneBoltCallbacks : GlobalEventListener
         if ( string.IsNullOrEmpty( evnt.HackPointIdentifier ) )
             return;
 
-        foreach ( var door in GameController.Registry.ResolveAll<Door>() )
+        foreach ( var item in GameController.Registry.ResolveAll<InteractableObject>() )
         {
+            var door = item as Door;
+            if ( door == null ) continue;            
+               
             if ( door.HackPoint != null && door.HackPoint.Identifier == evnt.HackPointIdentifier )
             {
                 door.Unlock();
