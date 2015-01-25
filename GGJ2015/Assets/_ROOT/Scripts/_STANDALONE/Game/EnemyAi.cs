@@ -9,7 +9,8 @@ public enum EnemyState
 	Alerted,
 	Attack,
 	Flee,
-	Walking
+	Walking,
+	Revenge
 }
 
 public class EnemyAi : MonoBehaviour {
@@ -23,6 +24,8 @@ public class EnemyAi : MonoBehaviour {
 	public EnemyState state;
 	public Transform target;
 	public GameObject spawnPoint;
+
+	public Transform RevengePoint;
 
 	public EnemyRoundPath roundPath;
 
@@ -63,8 +66,10 @@ public class EnemyAi : MonoBehaviour {
 			case EnemyState.Flee:
 			{
 				m_path.speed = EnemyFleeSpeed;
-				if(m_path.TargetReached)
-					state = EnemyState.Waiting;
+				if(m_path.TargetReached){
+					state = EnemyState.Revenge;
+					target = RevengePoint;
+				}
 			}
 			break;
 			case EnemyState.Attack:
@@ -98,20 +103,30 @@ public class EnemyAi : MonoBehaviour {
 				if(target == null)
 				{
 					target = roundPath.PathPoints[0];
-						break;
+					break;
 				}
 				
 				if(m_path.TargetReached){
 					for(int i = 0; i<roundPath.PathPoints.Length; i++)
 					{
-						if(roundPath.PathPoints[i].position == target.position)
+						if(roundPath.PathPoints[i].position == target.position && Vector3.Distance(target.position, transform.position) < 5)
 						{
-							if(i-1 == roundPath.PathPoints.Length && roundPath.PathPoints.Length > 0)
+							Debug.Log(i + " " + roundPath.PathPoints.Length);
+							if(i == roundPath.PathPoints.Length || roundPath.PathPoints.Length <= 1)
 								i = 0;
-							target.position = roundPath.PathPoints[i].position;
+							Debug.Log(i);
+							target = roundPath.PathPoints[i+1];
 							break;
 						}
 					}
+				}
+			}
+			break;
+			case EnemyState.Revenge:
+			{
+				m_path.speed = EnemyAlertedSpeed;
+				if(m_path.TargetReached && Vector3.Distance(transform.position, target.position) < 5){
+					state = EnemyState.Waiting;
 				}
 			}
 			break;
@@ -120,9 +135,9 @@ public class EnemyAi : MonoBehaviour {
 
 	private void PingPosition()
 	{
-		PingMonsterPosition ping = PingMonsterPosition.Create();
+		/*PingMonsterPosition ping = PingMonsterPosition.Create();
 		ping.Position = transform.position;
-		ping.Send();
+		ping.Send();*/
 	}
 
 

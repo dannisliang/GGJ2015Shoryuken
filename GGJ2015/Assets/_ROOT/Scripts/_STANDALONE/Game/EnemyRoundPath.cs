@@ -7,7 +7,15 @@ public class EnemyRoundPath : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		PathPoints = GetComponentsInChildren<Transform>();
+		Transform[] TempPathPoints = GetComponentsInChildren<Transform>();
+		PathPoints = new Transform[TempPathPoints.Length-1];
+		for(int i = 0; i<TempPathPoints.Length;i++)
+		{
+			if(i == 0)
+				continue;
+			PathPoints[i-1] = TempPathPoints[i];
+		}
+
 	}
 	
 	// Update is called once per frame
