@@ -403,6 +403,7 @@ Light:
   m_ShadowAngle: 0
   m_IndirectIntensity: 1
   m_AreaSize: {x: 1, y: 1}
+<<<<<<< HEAD
 --- !u!1001 &405796484
 Prefab:
   m_ObjectHideFlags: 0
@@ -482,6 +483,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 577271639}
   m_RootOrder: 0
+=======
+--- !u!1 &383936847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 383936849}
+  - 114: {fileID: 383936848}
+  m_Layer: 0
+  m_Name: DoorHackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 120240766, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &383936848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383936847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d80ba39c7b16418f82929d414df8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &383936849
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 383936847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -59.7099991, y: 0, z: .400000006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+>>>>>>> origin/master
 --- !u!1 &420085659
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Locked: 1
+  _hackPoint: {fileID: 383936848}
   openPosition: {x: -48, y: 12, z: .400000006}
   closePosition: {x: -48, y: 6, z: .400000006}
   doorRenderer: {fileID: 2087283768}
@@ -1755,8 +1798,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 438500, guid: 33d2771b181e5844d9623f9a104e8585, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 11438498, guid: 33d2771b181e5844d9623f9a104e8585, type: 2}
+      propertyPath: _hackPoint
+      value: 
+      objectReference: {fileID: 383936848}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 33d2771b181e5844d9623f9a104e8585, type: 2}
   m_RootGameObject: {fileID: 420085659}
@@ -1920,6 +1967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Locked: 1
+  _hackPoint: {fileID: 0}
   openPosition: {x: 0, y: 0, z: 0}
   closePosition: {x: 0, y: 0, z: 0}
   doorRenderer: {fileID: 0}
