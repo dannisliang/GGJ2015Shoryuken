@@ -16,18 +16,14 @@ public class LevierDoor : MonoBehaviour {
 	void Update () {
 		if(inZone && Input.GetKeyDown(KeyCode.E))
 		{
-<<<<<<< HEAD
 			if(Input.GetKeyDown(KeyCode.E))
 			{
 				door.Locked = !door.Locked;
 				if(!door.Locked)
 					MasterAudio.PlaySound3DAtTransform( "SFX_World_Hack_Access_Granted", transform);
 			}
-=======
 			door.Locked = !door.Locked;
             InteracSupp.SendMessage("LevierTriggered", SendMessageOptions.DontRequireReceiver);
-
->>>>>>> 3f65c90ce53ce27cfc296dfdbd433d9fc8b37fed
 		}
 	}
 
