@@ -33,6 +33,7 @@ public class RadarManager : MonoBehaviour {
     private Dictionary<Type, GameObject> _interactableIconsPrefabs = new Dictionary<Type, GameObject>();
 
     private Canvas _canvas;
+    private ScrollRect _scrollRect;
     private CanvasScaler _canvasScaler;
 
     /// <summary>
@@ -47,6 +48,7 @@ public class RadarManager : MonoBehaviour {
     {
         //cache components
         _canvas = GetComponent<Canvas>();
+        _scrollRect = GetComponentInChildren<ScrollRect>();
         _canvasScaler = GetComponent<CanvasScaler>();
 
         //setup Map's Image component
@@ -81,7 +83,7 @@ public class RadarManager : MonoBehaviour {
     {
         m_playerPos = Vector2.zero;
         m_barGO = Instantiate(radarBarPrefab) as GameObject;
-        m_barGO.transform.SetParent(_mapImage.transform, false);
+        m_barGO.transform.SetParent(_scrollRect.transform, false);
         m_barGO.transform.localPosition = new Vector3(m_playerPos.x, m_playerPos.y, offsetZ);
         m_barGO.transform.rotation = Quaternion.identity;
     }

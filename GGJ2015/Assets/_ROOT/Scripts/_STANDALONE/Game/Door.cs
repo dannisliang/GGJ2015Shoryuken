@@ -2,9 +2,11 @@
 using System.Collections;
 
 public class Door : InteractableObject {
+    
+    public bool Locked = true;
 
     [SerializeField]
-    public bool Locked = true;
+    private DoorHackPoint _hackPoint;
 
 	public Vector3 openPosition;
 	public Vector3 closePosition;
