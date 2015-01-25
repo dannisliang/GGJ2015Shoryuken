@@ -26,6 +26,9 @@ public class RadarManager : MonoBehaviour {
 
     private float _minScale = 1;
 
+    private float _maxScale = 3;
+    private float _scaleMaxRatio = 3;
+
     private Dictionary<Type, GameObject> _interactableIconsPrefabs = new Dictionary<Type, GameObject>();
 
     private Canvas _canvas;
@@ -50,6 +53,7 @@ public class RadarManager : MonoBehaviour {
         //setup Map's Image component
         _mapImage.SetNativeSize();        
         _minScale = _canvasScaler.referenceResolution.y / _mapImage.rectTransform.sizeDelta.y;
+        _maxScale = _minScale * _scaleMaxRatio;
         _mapImage.rectTransform.localScale = _minScale * Vector3.one;
 
         //Map interactable icons types
@@ -98,7 +102,16 @@ public class RadarManager : MonoBehaviour {
             m_barGO.SetActive(false);
         }
     }
-	
+
+    void Update()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") != 0) // forward
+        {
+            Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
+            ZoomMap(Input.GetAxis("Mouse ScrollWheel"));
+        }
+    }
+
 	void FixedUpdate () {
         if (m_barGO == null || !m_isScanning)
             return;
@@ -132,8 +145,10 @@ public class RadarManager : MonoBehaviour {
 
     public void ZoomMap(float delta)
     {
-        float scale = Mathf.Max( _mapImage.transform.localScale.y + delta, _minScale);
-        _mapImage.transform.localScale = scale * Vector3.one;        
+        //float scale = Mathf.Max( _mapImage.transform.localScale.y + delta, _minScale);
+        float scale = Mathf.Clamp(_mapImage.transform.localScale.y + delta, _minScale, _maxScale);
+        Debug.Log(_minScale+ " < "  + scale + " < " + _maxScale);
+        _mapImage.transform.localScale = scale * Vector3.one;
     }
     
     public void AddInteractable(string type, Vector3 worldPosition, string identifier)
