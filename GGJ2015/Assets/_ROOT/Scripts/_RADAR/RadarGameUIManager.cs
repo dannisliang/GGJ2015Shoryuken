@@ -9,4 +9,13 @@ public class RadarGameUIManager : UIManager {
         Panels["HackingPanel"].Deactivate();
     }
 
+
+    void Update()
+    {
+        if ( Input.GetKeyDown( KeyCode.Space ) )
+        {
+            HackingPanelGameCommand cmd = new HackingPanelGameCommand();
+            GameController.Execute(cmd);
+        }
+    }
 }
