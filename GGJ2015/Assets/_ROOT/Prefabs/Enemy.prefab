@@ -31,6 +31,7 @@ GameObject:
   - 54: {fileID: 5421298}
   - 114: {fileID: 11421300}
   - 114: {fileID: 11421298}
+  - 114: {fileID: 11413136}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -135,6 +136,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &11413136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3985c262f2dc6e44a32f648fc2b8363, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  target: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  roundPath: {fileID: 0}
 --- !u!114 &11421298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,7 +232,7 @@ MonoBehaviour:
   slowdownDistance: 0
   pickNextWaypointDist: 3
   forwardLook: 2
-  endReachedDistance: 3
+  endReachedDistance: 1
   closestOnPathCheck: 1
   myDist: 0
   myTargetYOLO: {x: 0, y: 0, z: 0}
@@ -231,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b6d99d5537c56408b37b343f5347c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 0}
+  enemy: {fileID: 11413136}
 --- !u!135 &13537598
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -254,7 +270,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
