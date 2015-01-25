@@ -98,7 +98,7 @@ public class EnemyAi : MonoBehaviour {
 			case EnemyState.Walking:
 			{
 				m_path.speed = EnemyWalkSpeed;
-				if(roundPath.PathPoints.Length <= 0)
+				if(roundPath == null || roundPath.PathPoints.Length <= 0)
 					break;
 				if(target == null)
 				{
