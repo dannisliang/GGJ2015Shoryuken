@@ -8,6 +8,9 @@ public class SoundRifle : MonoBehaviour {
 	public float coolDown;
 	public bool inCoolDown = false;
 
+	public TextMesh munitionsText;
+	public TextMesh coolDownText;
+
 	private bool clicked;
 
 	// Use this for initialization
@@ -16,13 +19,16 @@ public class SoundRifle : MonoBehaviour {
 	}
 
 	float time = 0;
+	int count = 5;
 	// Update is called once per frame
 	void Update () {
+		munitionsText.text = munitions.ToString();
 		if(Input.GetMouseButton(0) && !inCoolDown && !clicked)
 		{
 			clicked = true;
 			if(munitions > 0){
 				munitions--;
+				coolDownText.text = "5";
 				collider.enabled = true;
 				inCoolDown = true;
 				//Animations
@@ -34,12 +40,15 @@ public class SoundRifle : MonoBehaviour {
 		if(inCoolDown)
 		{
 			time += Time.deltaTime;
-			if(time > 1)
-				collider.enabled = false;
-			if(time >= coolDown)
-			{
+			if(time > 1){
 				time = 0;
-				inCoolDown = false;
+				count--;
+				coolDownText.text = count.ToString();
+				collider.enabled = false;
+				if(count <= 0){
+					inCoolDown = false;
+					count = 5;
+				}
 			}
 		}
 
