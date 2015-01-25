@@ -82,7 +82,7 @@ public class RadarManager : MonoBehaviour {
     {
         m_playerPos = Vector2.zero;
         m_barGO = Instantiate(radarBarPrefab) as GameObject;
-        m_barGO.transform.SetParent(_scrollRect.transform, false);
+        m_barGO.transform.SetParent(_mapImage.transform, false);
         m_barGO.transform.localPosition = new Vector3(0, 0, offsetZ);
         m_barGO.transform.rotation = Quaternion.identity;
     }

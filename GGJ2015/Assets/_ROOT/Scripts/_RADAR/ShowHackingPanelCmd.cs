@@ -10,6 +10,7 @@ public class HackingPanelGameCommand : GameCommand {
     protected override void OnExecute()
     {
         HackingPanel hPnl = UIManager.Current.Panels["HackingPanel"] as HackingPanel;
+        hPnl.command = this;
         hPnl.Activate();
     }
 
