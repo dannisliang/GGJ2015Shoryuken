@@ -1071,10 +1071,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52d492e4074eac448b9637aa3cad6c19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  minPinchSpeed: 10
-  varianceInDistances: 0
-  minDistDelta: .5
 --- !u!114 &1344712776
 MonoBehaviour:
   m_ObjectHideFlags: 0

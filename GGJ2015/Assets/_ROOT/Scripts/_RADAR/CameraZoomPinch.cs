@@ -38,7 +38,7 @@ public class CameraZoomPinch : MonoBehaviour
             if (Mathf.Abs(touchDelta) < minDistDelta)
                 return;
             
-            Debug.Log("curDist : " + curDist + " - touchDelta : " + touchDelta + "speedTouch : " + speedTouch0);
+            //Debug.Log("curDist : " + curDist + " - touchDelta : " + touchDelta + "speedTouch : " + speedTouch0);
 
             if ((touchDelta + varianceInDistances <= 0) && (speedTouch0 > minPinchSpeed) && (speedTouch1 > minPinchSpeed))
                 RadarManager.Instance.ZoomMap( speed );

@@ -15,8 +15,11 @@ public class RadarManager : MonoBehaviour {
     public GameObject radarBarPrefab;    
 
     //Factors for world to radar position conversions
-    public float worldToLocalScaleFactorX = 1;
-    public float worldToLocalScaleFactorZ = 1;
+    private float worldToLocalScaleFactorX = 10f;
+    private float worldToLocalScaleFactorZ = 10f;
+
+    private float worldToLocalScaleOffsetX = 33f;  // + ->
+    private float worldToLocalScaleOffsetZ = -49f; // + /\
 
     private bool m_isScanning = true;
 
@@ -25,12 +28,9 @@ public class RadarManager : MonoBehaviour {
     private GameObject m_openedMenu;
 
     private float _minScale = 1;
-<<<<<<< HEAD
     private float _maxScale = 3;
     private float _scaleMaxRatio = 3;
     private const float offsetZ = -2f;
-=======
->>>>>>> 55c22c8158891c2ede619aa11254f0b958ef9956
 
     private Dictionary<Type, GameObject> _interactableIconsPrefabs = new Dictionary<Type, GameObject>();
 
@@ -42,8 +42,9 @@ public class RadarManager : MonoBehaviour {
     /// Converts a world position to a local position relative to the Map Image
     /// </summary>
     Vector3 WorldToRadar( Vector3 world )
-    {        
-        return new Vector3(world.x * worldToLocalScaleFactorX, world.z * worldToLocalScaleFactorZ, 0);
+    {
+        Debug.Log(worldToLocalScaleFactorX + " " + worldToLocalScaleFactorZ);
+        return new Vector3(((world.x + worldToLocalScaleOffsetX) * worldToLocalScaleFactorX), ((world.z + worldToLocalScaleOffsetZ) * worldToLocalScaleFactorZ), 0);
     }
 
     void Awake()
@@ -110,7 +111,6 @@ public class RadarManager : MonoBehaviour {
     {
         if (Input.GetAxis("Mouse ScrollWheel") != 0) // forward
         {
-            Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
             ZoomMap(Input.GetAxis("Mouse ScrollWheel"));
         }
     }
@@ -133,6 +133,7 @@ public class RadarManager : MonoBehaviour {
 
         GameObject go = Kathulhu.PoolsManager.Instance.Spawn( "RadarBlip" );
         go.transform.SetParent( _mapImage.transform, false );
+        Debug.Log(worldPosition +  " to "  + pos);
         go.transform.localPosition = pos;
     }
 
@@ -150,7 +151,6 @@ public class RadarManager : MonoBehaviour {
     {
         //float scale = Mathf.Max( _mapImage.transform.localScale.y + delta, _minScale);
         float scale = Mathf.Clamp(_mapImage.transform.localScale.y + delta, _minScale, _maxScale);
-        Debug.Log(_minScale+ " < "  + scale + " < " + _maxScale);
         _mapImage.transform.localScale = scale * Vector3.one;
     }
     
