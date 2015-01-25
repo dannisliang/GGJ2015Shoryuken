@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Kathulhu;
 
 public class DoorHackPointIcon : InteractableIcon
 {
@@ -9,11 +10,18 @@ public class DoorHackPointIcon : InteractableIcon
     {
 
         HackingPanelGameCommand cmd = new HackingPanelGameCommand();
-        cmd.Execute();
+        cmd.OnHackingResult += HackResult;
+        GameController.Execute( cmd );        
+    }
 
-        //UnlockDoor unlock = UnlockDoor.Create();
-        //unlock.HackPointIdentifier = Identifier;
-        //unlock.Send();
+    void HackResult(HackingPanelGameCommand cmd)
+    {
+        if ( cmd.State == CommandState.Completed )
+        {
+            UnlockDoor unlock = UnlockDoor.Create();
+            unlock.HackPointIdentifier = Identifier;
+            unlock.Send();
+        }
     }
 
 }

@@ -111,9 +111,8 @@ public class EnemyAi : MonoBehaviour {
 					{
 						if(roundPath.PathPoints[i].position == target.position && Vector3.Distance(target.position, transform.position) < 5)
 						{
-							Debug.Log(i + " " + roundPath.PathPoints.Length);
-							if(i == roundPath.PathPoints.Length || roundPath.PathPoints.Length <= 1)
-								i = 0;
+							if(i == roundPath.PathPoints.Length-1 || roundPath.PathPoints.Length <= 1)
+								i = -1;
 							Debug.Log(i);
 							target = roundPath.PathPoints[i+1];
 							break;
@@ -157,6 +156,14 @@ public class EnemyAi : MonoBehaviour {
 		}
 		set {
 			m_path = value;
+		}
+	}
+
+	public void OnCollisionEnter(Collision other)
+	{
+		if(other.transform.tag == "Player")
+		{
+			GameManager.Instance.RevivePlayer();
 		}
 	}
 }

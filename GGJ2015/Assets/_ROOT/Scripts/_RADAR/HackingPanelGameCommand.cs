@@ -7,6 +7,7 @@ public class HackingPanelGameCommand : GameCommand {
 
     public Action<HackingPanelGameCommand> OnHackingResult;
 
+
     protected override void OnExecute()
     {
         HackingPanel hPnl = UIManager.Current.Panels["HackingPanel"] as HackingPanel;
@@ -24,6 +25,9 @@ public class HackingPanelGameCommand : GameCommand {
         base.OnComplete();
 
         Debug.Log( "Hacking completed!" );
+
+        HackingPanel hPnl = UIManager.Current.Panels["HackingPanel"] as HackingPanel;
+        hPnl.Deactivate();
     }
 
     /// <summary>
@@ -31,10 +35,20 @@ public class HackingPanelGameCommand : GameCommand {
     /// </summary>
     public void CompleteHacking()
     {
+        HackingPanel hPnl = UIManager.Current.Panels["HackingPanel"] as HackingPanel;
+        hPnl.GetComponent<CanvasGroup>().interactable = false;
+
+        GameController.Instance.StartCoroutine( DelayedClose() );
+    }
+
+    IEnumerator DelayedClose()
+    {
+        yield return new WaitForSeconds( 2 );
+
         Complete();
 
         if ( OnHackingResult != null )
-            OnHackingResult( this );
+            OnHackingResult( this );  
     }
 
     /// <summary>

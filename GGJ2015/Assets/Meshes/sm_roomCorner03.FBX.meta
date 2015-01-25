@@ -1,21 +1,14 @@
 fileFormatVersion: 2
-guid: c8badb1a55bf42f4084f8315ca4af3b0
+guid: b57c00f7df57ebf438fac29f932a28ec
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
     100000: //RootNode
-    100002: sm_door
-    100004: sm_door_bone1
-    100006: sm_door_root
     400000: //RootNode
-    400002: sm_door
-    400004: sm_door_bone1
-    400006: sm_door_root
-    4300000: sm_door
-    7400000: Take 001
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: sm_roomCorner03
     9500000: //RootNode
-    11100000: //RootNode
-    13700000: sm_door
   materials:
     importMaterials: 1
     materialName: 0
@@ -67,6 +60,6 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 2
   additionalBone: 0
   userData: 
