@@ -16,7 +16,8 @@ public class fx_bullet : MonoBehaviour {
 	IEnumerator Anim(){
 		while(myLight.intensity > 0){
 			myLight.intensity = Mathf.Lerp(1,0,Time.deltaTime * mySpeed);
-			yield return null;
+			yield return new WaitForSeconds(mySpeed/2f);
+			Destroy(this.gameObject);
 		}
 	}
 

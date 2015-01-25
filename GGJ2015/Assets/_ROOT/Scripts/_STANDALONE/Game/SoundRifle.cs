@@ -8,8 +8,12 @@ public class SoundRifle : MonoBehaviour {
 	public float coolDown;
 	public bool inCoolDown = false;
 
+
 	public TextMesh munitionsText;
 	public TextMesh coolDownText;
+
+	public GameObject bulletPrefab;
+	public GameObject launchPosition;
 
 	private bool clicked;
 
@@ -34,6 +38,9 @@ public class SoundRifle : MonoBehaviour {
 				//Animations
 				gameObject.GetComponent<Animation>()["Take 001"].speed = 2;
 				gameObject.GetComponent<Animation>().Play("Take 001");
+				GameObject bullet =(GameObject) Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+				bullet.transform.rotation = Quaternion.LookRotation(GameManager.Instance.PlayerInstance.transform.forward);
+				bullet.GetComponent<fx_bullet>().Flash(1);
 			}
 		}
 
