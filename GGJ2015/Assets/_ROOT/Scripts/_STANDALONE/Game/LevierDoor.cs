@@ -3,10 +3,10 @@ using System.Collections;
 
 public class LevierDoor : MonoBehaviour {
 	
-	public bool inZone;
+	private bool inZone;
 
 	public Door door;
-
+    public GameObject InteracSupp;
 	// Use this for initialization
 	void Start () {
 	
@@ -14,12 +14,11 @@ public class LevierDoor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(inZone)
+		if(inZone && Input.GetKeyDown(KeyCode.E))
 		{
-			if(Input.GetKeyDown(KeyCode.E))
-			{
-				door.Locked = !door.Locked;
-			}
+			door.Locked = !door.Locked;
+            InteracSupp.SendMessage("LevierTriggered", SendMessageOptions.DontRequireReceiver);
+
 		}
 	}
 

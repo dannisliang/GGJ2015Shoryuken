@@ -1,18 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class alarmLight : MonoBehaviour {
+public class AlarmLight : MonoBehaviour {
 
 	float speed = 4;
 	Light myLight;
 
 	void Start(){
 		myLight = GetComponent<Light> ();
-		Play ();
 	}
 
 	public void Play(){
 		StartCoroutine ("Rotate");
+        Light light = GetComponent<Light>();
+        light.enabled = true;
 	}
 
 	public void Stop(){
