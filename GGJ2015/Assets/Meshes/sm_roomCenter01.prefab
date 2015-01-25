@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3304062}
   - 23: {fileID: 2304062}
   - 95: {fileID: 9504062}
+  - 64: {fileID: 6417084}
   m_Layer: 0
   m_Name: sm_roomCenter01
   m_TagString: Untagged
@@ -57,6 +58,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104062}
   m_Mesh: {fileID: 4300000, guid: a8aafbacf25b1264a98d8a2894e05229, type: 3}
+--- !u!64 &6417084
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104062}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 4300000, guid: 3d9652111516b8a47b606b20f8d99a2c, type: 3}
 --- !u!95 &9504062
 Animator:
   serializedVersion: 3
