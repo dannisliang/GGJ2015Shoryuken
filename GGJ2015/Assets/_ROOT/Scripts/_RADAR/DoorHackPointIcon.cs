@@ -10,11 +10,18 @@ public class DoorHackPointIcon : InteractableIcon
     {
 
         HackingPanelGameCommand cmd = new HackingPanelGameCommand();
-        GameController.Execute( cmd );
+        cmd.OnHackingResult += HackResult;
+        GameController.Execute( cmd );        
+    }
 
-        //UnlockDoor unlock = UnlockDoor.Create();
-        //unlock.HackPointIdentifier = Identifier;
-        //unlock.Send();
+    void HackResult(HackingPanelGameCommand cmd)
+    {
+        if ( cmd.State == CommandState.Completed )
+        {
+            UnlockDoor unlock = UnlockDoor.Create();
+            unlock.HackPointIdentifier = Identifier;
+            unlock.Send();
+        }
     }
 
 }
