@@ -21,7 +21,9 @@ public class SoundBall : MonoBehaviour {
 		{
 			EnemyAi enemy = other.GetComponent<EnemyAi>();
 			enemy.state = EnemyState.Flee;
-			enemy.RevengePoint = Player.transform;
+			GameObject go = new GameObject();
+			go.transform.position = Player.transform.position;
+			enemy.RevengePoint = go.transform;
 		}
 	}
 }

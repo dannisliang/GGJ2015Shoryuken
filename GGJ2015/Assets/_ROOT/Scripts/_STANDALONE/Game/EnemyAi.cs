@@ -15,19 +15,21 @@ public enum EnemyState
 
 public class EnemyAi : MonoBehaviour {
 
-	static float EnemyAttackSpeed = 10;
-	static float EnemyWalkSpeed = 6;
-	static float EnemyAlertedSpeed = 8;
-	static float EnemyFleeSpeed = 10;
-	static float TimeWaited = 10;
+	static float EnemyAttackSpeed = 8;
+	static float EnemyWalkSpeed = 4;
+	static float EnemyAlertedSpeed = 6;
+	static float EnemyFleeSpeed = 8;
+	static float TimeWaited = 8;
+
+	private GameObject forNothing;
 
 	public EnemyState state;
 	public Transform target;
 	public GameObject spawnPoint;
 
-	public Transform RevengePoint;
+	public List<GameObject> EffectZone = new List<GameObject>();
 
-	public EnemyRoundPath roundPath;
+	public Transform RevengePoint;
 
 	private Seeker m_seeker;
 	private AIPath m_path;
@@ -61,12 +63,22 @@ public class EnemyAi : MonoBehaviour {
 			m_path.target = target;
 		}
 
+		if(m_path.canMove)
+			GetComponentInChildren<Animation>().Play("Take 001");
+		else{
+			GetComponentInChildren<Animation>().Stop();
+			rigidbody.velocity = Vector3.zero;
+		}
+
 		switch(state)
 		{
 			case EnemyState.Flee:
 			{
-				m_path.speed = EnemyFleeSpeed;
-				if(m_path.TargetReached){
+				m_path.canMove = false;
+				time += Time.deltaTime;
+				if(time > 5){
+					m_path.canMove = true;
+					time = 0;
 					state = EnemyState.Revenge;
 					target = RevengePoint;
 				}
@@ -97,8 +109,37 @@ public class EnemyAi : MonoBehaviour {
 			break;
 			case EnemyState.Walking:
 			{
+				Path.canMove = true;
 				m_path.speed = EnemyWalkSpeed;
-				if(roundPath == null || roundPath.PathPoints.Length <= 0)
+				
+				if(target == null)
+				{
+					int rand = Random.Range(0, EffectZone.Count);
+					GameObject zone = EffectZone[rand];
+					BoxCollider collider = EffectZone[rand].GetComponent<BoxCollider>();
+					int x = (int)Random.Range((zone.transform.position.x - collider.size.x/2) +1, (zone.transform.position.x + collider.size.x/2));
+					int z = (int)Random.Range((zone.transform.position.z - collider.size.z/2) +1, (zone.transform.position.z + collider.size.z/2));
+					Destroy(forNothing);
+					forNothing = new GameObject();
+					target = forNothing.transform;
+					target.transform.position = new Vector3(x,0,z);
+				}
+
+				if(m_path.TargetReached){
+					Path.canMove = false;
+					state = EnemyState.Waiting;
+					time = 0;
+				}
+
+				time+= Time.deltaTime;
+				if(time >= 8)
+				{
+					Debug.Log("DELAY");
+					target = null;
+					time = 0;
+				}
+					
+				/*if(roundPath == null || roundPath.PathPoints.Length <= 0)
 					break;
 				if(target == null)
 				{
@@ -118,7 +159,7 @@ public class EnemyAi : MonoBehaviour {
 							break;
 						}
 					}
-				}
+				}*/
 			}
 			break;
 			case EnemyState.Revenge:
